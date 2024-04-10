@@ -26,6 +26,7 @@
     border-bottom: 0.5px solid black;
     padding-left: 8px;
     margin-top: 16px;
+    font-size: 16px;
 }
 
 .login-button {
@@ -42,11 +43,17 @@
     cursor: pointer;
 }
 
-.sign-up-link {
-    text-decoration: underline;
+.login-error-message {
+    color: #FF7272;
+    width: 480px;
 }
 
-.sign-up-link:hover {
+.signup-link {
+    text-decoration: underline;
+    color: black;
+}
+
+.signup-link:hover {
     color: #875233;
     cursor: pointer;
 }

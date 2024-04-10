@@ -1,10 +1,12 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate, Link } from 'react-router-dom';
 import Welcome from "../../assets/images/welcome.jpg";
 import Logo from "../../assets/images/logo.svg";
 import "./Login.css";
 
 const Login = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -12,6 +14,7 @@ const Login = () => {
   } = useForm();
   const onSubmit = (data) => {
     console.log(data);
+    navigate('/');
   };
   return (
     <div className="login-container">
@@ -39,7 +42,7 @@ const Login = () => {
               })}
             />
             <br />
-            {errors.email && <p>&#9888; {errors.email.message}</p>}
+            {errors.email && <p className="login-error-message">&#9888; {errors.email.message}</p>}
             <input
               className="login-input"
               type="password"
@@ -50,12 +53,12 @@ const Login = () => {
               })}
             />
             <br />
-            {errors.password && <p>&#9888; {errors.password.message}</p>}
+            {errors.password && <p className="login-error-message">&#9888; {errors.password.message}</p>}
             <input className="login-button" type="submit" value="LOG IN" />
           </form>
           <p style={{ fontWeight: "300", fontSize: "18px", marginTop: "12px" }}>
             Don’t have an account?{" "}
-            <span className="sign-up-link">Sign up</span>
+            <Link className="signup-link" to="/signup">Sign up</Link>
           </p>
         </div>
       </div>
