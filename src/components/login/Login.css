@@ -1,0 +1,58 @@
+.login-container {
+  display: flex;
+}
+
+.welcome-img {
+  width: 50%;
+  height: 100vh;
+}
+
+.login-form-container {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form-inner-container {
+    width: 80%;
+}
+
+.logo-img {
+    width: 160px;
+    height: 40px;
+    margin-bottom: 120px;
+}
+
+.login-input {
+    width: 400px;
+    height: 40px;
+    border: none;
+    border-bottom: 0.5px solid black;
+    padding-left: 8px;
+}
+
+.login-button {
+    width: 400px;
+    height: 40px;
+    margin-top: 80px;
+    background-color: #875233;
+    border: none;
+    color: white;
+}
+
+.login-button:hover {
+    background-color: #A0613C;
+    cursor: pointer;
+}
+
+.sign-up-link {
+    text-decoration: underline;
+}
+
+.sign-up-link:hover {
+    color: #875233;
+    cursor: pointer;
+}
+
+
