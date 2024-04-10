@@ -14,26 +14,22 @@
     align-items: center;
 }
 
-.login-form-inner-container {
-    width: 80%;
-}
-
 .logo-img {
     width: 160px;
     height: 40px;
-    margin-bottom: 120px;
 }
 
 .login-input {
-    width: 400px;
+    width: 480px;
     height: 40px;
     border: none;
     border-bottom: 0.5px solid black;
     padding-left: 8px;
+    margin-top: 16px;
 }
 
 .login-button {
-    width: 400px;
+    width: 480px;
     height: 40px;
     margin-top: 80px;
     background-color: #875233;

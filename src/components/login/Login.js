@@ -17,14 +17,14 @@ const Login = () => {
     <div className="login-container">
       <img className="welcome-img" src={Welcome} alt="welcome" />
       <div className="login-form-container">
-        <div className="login-form-inner-container">
+        <div>
           <img className="logo-img" src={Logo} alt="Logo" />
           <form onSubmit={handleSubmit(onSubmit)}>
             <p
               style={{
                 fontWeight: "300",
                 fontSize: "18px",
-                marginBottom: "16px",
+                marginTop: "120px",
               }}
             >
               LOG IN TO YOUR ACCOUNT
