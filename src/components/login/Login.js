@@ -14,7 +14,7 @@ const Login = () => {
   } = useForm();
   const onSubmit = (data) => {
     console.log(data);
-    navigate('/');
+    navigate('/dashboard');
   };
   return (
     <div className="login-container">

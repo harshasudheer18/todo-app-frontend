@@ -1,0 +1,43 @@
+.logo-img {
+    width: 160px;
+    height: 40px;
+    align-self: center;
+    margin-top: 28px;
+
+}
+
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(176, 147, 117, 0.4);
+}
+
+.sidebar-buttons {
+    margin-top: 48px;
+    margin-left: 24px;
+    margin-right: 24px;
+}
+
+.sidebar-button {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-top: 12px;
+    padding: 8px;
+}
+
+.sidebar-button:hover {
+    border: 0.5px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.main-container {
+    width: 75%;
+}
