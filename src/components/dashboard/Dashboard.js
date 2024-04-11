@@ -1,18 +1,19 @@
 import React, {useState} from "react";
 import AddTask from "./addtask/AddTask";
-import Search from "./search/Search";
 import EditTask from "./edittask/EditTask";
+import Search from "./search/Search";
+import Today from "./today/Today";
 import User from "../../assets/images/icons/user.svg";
 import Logo from "../../assets/images/logo.svg";
 import Add from "../../assets/images/icons/add.svg";
 import SearchIcon from "../../assets/images/icons/search.svg";
-import Today from "../../assets/images/icons/today.svg";
+import TodayIcon from "../../assets/images/icons/today.svg";
 import Upcoming from "../../assets/images/icons/upcoming.svg";
 import Project from "../../assets/images/icons/project.svg";
 import "./Dashboard.css";
 
 const Dashboard = () => {
-  const [seletedOption, setSeletedOption] = useState({add: false, edit: false, search: false});
+  const [seletedOption, setSeletedOption] = useState({add: false, edit: false, search: false, today: true});
 
   const handleOptionSelect = (option) => {
     let currentOption = {...seletedOption}
@@ -35,8 +36,8 @@ const Dashboard = () => {
             <img src={SearchIcon} alt="search" />
             <p>Search</p>
           </div>
-          <div className={seletedOption.edit ? "sidebar-button sidebar-button-selected" : "sidebar-button"} onClick={() => handleOptionSelect("edit")}>
-            <img src={Today} alt="today" />
+          <div className={seletedOption.today ? "sidebar-button sidebar-button-selected" : "sidebar-button"} onClick={() => handleOptionSelect("today")}>
+            <img src={TodayIcon} alt="today" />
             <p>Today</p>
           </div>
           <div className="sidebar-button">
@@ -52,8 +53,9 @@ const Dashboard = () => {
       </div>
       <div className="main-container">
         {seletedOption.add && <AddTask/>}
-        {seletedOption.search && <Search/>}
         {seletedOption.edit && <EditTask/>}
+        {seletedOption.search && <Search/>}
+        {seletedOption.today && <Today/>}
       </div>
       <div className="user-container">
         <img src={User} alt="user" />
