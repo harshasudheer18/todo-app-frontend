@@ -1,0 +1,76 @@
+.add-container {
+    display: flex;
+    justify-content: center;
+}
+
+.add-inner-container {
+    width: 70%;
+    min-height: 400px;
+    margin-top: 120px;
+    display: flex;
+    border: 0.5px solid black;
+    border-radius: 4px;
+}
+
+.add-content-container {
+    width: 65%;
+}
+
+.add-options-container {
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    background-color: #FCFAF8;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.add-options-inner-container {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* background-color: aliceblue; */
+}
+
+.option-button {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    margin-top: 12px;
+    border-radius: 4px;
+}
+
+.option-button:hover {
+    background-color: rgba(176, 147, 117, 0.4);
+    cursor: pointer;;
+}
+
+.add-button-container {
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between
+}
+
+.add-button {
+    width: 45%;
+    height: 32px;
+    border: 1px solid #875233;
+    background-color: #FCFAF8;
+    border-radius: 4px;
+}
+
+.add-button-cancel:hover {
+    background-color: rgba(176, 147, 117, 0.4);
+}
+
+.add-button-save {
+    background-color: #875233;
+    color: white
+}
+
+.add-button-save:hover {
+    background-color: #A0613C;
+}
