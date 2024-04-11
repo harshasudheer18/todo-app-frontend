@@ -1,9 +1,9 @@
-.add-container {
+.edit-container {
     display: flex;
     justify-content: center;
 }
 
-.add-inner-container {
+.edit-inner-container {
     width: 70%;
     min-height: 400px;
     margin-top: 120px;
@@ -12,11 +12,11 @@
     border-radius: 4px;
 }
 
-.add-content-container {
+.edit-content-container {
     width: 65%;
 }
 
-.add-options-container {
+.edit-options-container {
     width: 35%;
     display: flex;
     justify-content: center;
@@ -27,7 +27,7 @@
     border-bottom-right-radius: 4px;
 }
 
-.add-options-inner-container {
+.edit-options-inner-container {
     width: 80%;
     display: flex;
     flex-direction: column;
@@ -35,26 +35,40 @@
     /* background-color: aliceblue; */
 }
 
-.add-option-button {
+.edit-option-button {
     display: flex;
     justify-content: space-between;
     padding: 8px;
-    margin-top: 12px;
+    margin-top: 4px;
     border-radius: 4px;
 }
 
-.add-option-button:hover {
+.edit-option-button:hover {
     background-color: rgba(176, 147, 117, 0.4);
     cursor: pointer;;
 }
 
-.add-button-container {
+.edit-dropdown {
+    display: none;
+}
+
+.edit-option-button:hover .edit-dropdown {
+    display: inline;
+}
+
+.edit-option-button-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.edit-button-container {
     margin-bottom: 12px;
     display: flex;
     justify-content: space-between
 }
 
-.add-button {
+.edit-button {
     width: 45%;
     height: 32px;
     border: 1px solid #875233;
@@ -62,15 +76,15 @@
     border-radius: 4px;
 }
 
-.add-button-cancel:hover {
+.edit-button-cancel:hover {
     background-color: rgba(176, 147, 117, 0.4);
 }
 
-.add-button-save {
+.edit-button-save {
     background-color: #875233;
     color: white
 }
 
-.add-button-save:hover {
+.edit-button-save:hover {
     background-color: #A0613C;
 }

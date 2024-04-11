@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import AddTask from "./addtask/AddTask";
+import EditTask from "./edittask/EditTask";
 import User from "../../assets/images/icons/user.svg";
 import Logo from "../../assets/images/logo.svg";
 import Add from "../../assets/images/icons/add.svg";
@@ -10,20 +11,26 @@ import Project from "../../assets/images/icons/project.svg";
 import "./Dashboard.css";
 
 const Dashboard = () => {
-  const [isAddTask, setIsAddTask] = useState(false);
-  const handleAddTask = () => {
-    setIsAddTask(true);
+  const [seletedOption, setSeletedOption] = useState({add: false, edit: false});
+
+  const handleOptionSelect = (option) => {
+    let currentOption = {...seletedOption}
+    for (const key in currentOption) {
+      currentOption[key] = false;
+    }
+    currentOption[option] = true
+    setSeletedOption(currentOption);
   }
   return (
     <div className="dashboard-container">
       <div className="sidebar">
         <img className="logo-img" src={Logo} alt="logo" />
         <div className="sidebar-buttons">
-          <div className={isAddTask ? "sidebar-button sidebar-button-selected" : "sidebar-button"} onClick={handleAddTask}>
+          <div className={seletedOption.add ? "sidebar-button sidebar-button-selected" : "sidebar-button"} onClick={() => handleOptionSelect("add")}>
             <img src={Add} alt="add" />
             <p>Add task</p>
           </div>
-          <div className="sidebar-button">
+          <div className={seletedOption.edit ? "sidebar-button sidebar-button-selected" : "sidebar-button"} onClick={() => handleOptionSelect("edit")}>
             <img src={Search} alt="search" />
             <p>Search</p>
           </div>
@@ -43,7 +50,8 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="main-container">
-        {isAddTask && <AddTask/>}
+        {seletedOption.add && <AddTask/>}
+        {seletedOption.edit && <EditTask/>}
       </div>
       <div className="user-container">
         <img src={User} alt="user" />

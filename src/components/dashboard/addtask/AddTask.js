@@ -30,15 +30,15 @@ const AddTask = () => {
         <div className="add-options-container">
           <div className="add-options-inner-container">
             <div>
-              <div className="option-button">
+              <div className="add-option-button">
                 <p>Project</p>
                 <img src={Dropdown} alt="dropdown" />
               </div>
-              <div className="option-button">
+              <div className="add-option-button">
                 <p>Due date</p>
                 <img src={Dropdown} alt="dropdown" />
               </div>
-              <div className="option-button">
+              <div className="add-option-button">
                 <p>Priority</p>
                 <img src={Dropdown} alt="dropdown" />
               </div>
