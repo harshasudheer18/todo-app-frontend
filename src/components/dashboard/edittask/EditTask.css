@@ -32,7 +32,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* background-color: aliceblue; */
 }
 
 .edit-option-button {
@@ -45,7 +44,7 @@
 
 .edit-option-button:hover {
     background-color: rgba(176, 147, 117, 0.4);
-    cursor: pointer;;
+    cursor: pointer;
 }
 
 .edit-dropdown {
