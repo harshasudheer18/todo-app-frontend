@@ -1,22 +1,30 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link } from "react-router-dom";
+import { submitSignUp } from "./api/ApiCalls";
 import Welcome from "../../assets/images/welcome.jpg";
 import Logo from "../../assets/images/logo.svg";
 import "./SignUp.css";
 
 const SignUp = () => {
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
-    navigate('/login');
+
+  const onSubmit = async (data) => {
+    try {
+      await submitSignUp(data);
+      navigate("/login");
+    } catch (err) {
+      console.log(err);
+    }
   };
+
   return (
     <div className="signup-container">
       <img className="welcome-img" src={Welcome} alt="welcome" />
@@ -43,7 +51,11 @@ const SignUp = () => {
               })}
             />
             <br />
-            {errors.fname && <p className="signup-error-message">&#9888; {errors.fname.message}</p>}
+            {errors.fname && (
+              <p className="signup-error-message">
+                &#9888; {errors.fname.message}
+              </p>
+            )}
             <input
               className="signup-input"
               type="text"
@@ -54,7 +66,11 @@ const SignUp = () => {
               })}
             />
             <br />
-            {errors.lname && <p className="signup-error-message">&#9888; {errors.lname.message}</p>}
+            {errors.lname && (
+              <p className="signup-error-message">
+                &#9888; {errors.lname.message}
+              </p>
+            )}
             <input
               className="signup-input"
               type="email"
@@ -65,7 +81,11 @@ const SignUp = () => {
               })}
             />
             <br />
-            {errors.email && <p className="signup-error-message">&#9888; {errors.email.message}</p>}
+            {errors.email && (
+              <p className="signup-error-message">
+                &#9888; {errors.email.message}
+              </p>
+            )}
             <input
               className="signup-input"
               type="password"
@@ -90,7 +110,11 @@ const SignUp = () => {
               })}
             />
             <br />
-            {errors.password && <p className="signup-error-message">&#9888; {errors.password.message}</p>}
+            {errors.password && (
+              <p className="signup-error-message">
+                &#9888; {errors.password.message}
+              </p>
+            )}
             <input
               className="signup-input"
               type="password"
@@ -107,12 +131,17 @@ const SignUp = () => {
             />
             <br />
             {errors.confirm_password && (
-              <p className="signup-error-message">&#9888;{errors.confirm_password.message}</p>
+              <p className="signup-error-message">
+                &#9888;{errors.confirm_password.message}
+              </p>
             )}
             <input className="signup-button" type="submit" value="SIGN UP" />
           </form>
           <p style={{ fontWeight: "300", fontSize: "18px", marginTop: "12px" }}>
-            Don’t have an account? <Link to="/login" className="login-link">Log in</Link>
+            Don’t have an account?{" "}
+            <Link to="/login" className="login-link">
+              Log in
+            </Link>
           </p>
         </div>
       </div>

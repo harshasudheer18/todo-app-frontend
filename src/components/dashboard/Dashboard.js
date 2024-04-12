@@ -15,7 +15,7 @@ import ProjectIcon from "../../assets/images/icons/project.svg";
 import "./Dashboard.css";
 
 const Dashboard = () => {
-  const [seletedOption, setSeletedOption] = useState({add: false, edit: false, search: false, today: false, upcoming: false, project: false});
+  const [seletedOption, setSeletedOption] = useState({add: false, edit: false, search: false, today: true, upcoming: false, project: false});
 
   const handleOptionSelect = (option) => {
     let currentOption = {...seletedOption}
