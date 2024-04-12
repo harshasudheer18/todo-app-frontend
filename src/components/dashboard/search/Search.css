@@ -49,6 +49,6 @@
 }
 
 .links-item:hover {
-    color: #B09375;
+    background-color: rgba(176, 147, 117, 0.2);
     cursor: pointer;
 }
