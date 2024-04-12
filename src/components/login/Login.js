@@ -6,7 +6,7 @@ import Welcome from "../../assets/images/welcome.jpg";
 import Logo from "../../assets/images/logo.svg";
 import "./Login.css";
 
-const Login = () => {
+const Login = ({setUser}) => {
   const navigate = useNavigate();
   const {
     register,
@@ -16,6 +16,7 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       const response = await submitLogin(data);
+      setUser({firstname: response.data.firstName, lastname: response.data.lastName});
       localStorage.setItem("token", response.data.token);
       navigate("/dashboard");
     } catch (err) {

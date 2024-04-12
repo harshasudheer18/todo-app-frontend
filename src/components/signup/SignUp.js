@@ -44,31 +44,31 @@ const SignUp = () => {
             <input
               className="signup-input"
               type="text"
-              name="fname"
+              name="firstname"
               placeholder="FIRST NAME"
-              {...register("fname", {
+              {...register("firstname", {
                 required: { value: true, message: "First Name is required." },
               })}
             />
             <br />
-            {errors.fname && (
+            {errors.firstname && (
               <p className="signup-error-message">
-                &#9888; {errors.fname.message}
+                &#9888; {errors.firstname.message}
               </p>
             )}
             <input
               className="signup-input"
               type="text"
-              name="lname"
+              name="lastname"
               placeholder="LAST NAME"
-              {...register("lname", {
+              {...register("lastname", {
                 required: { value: true, message: "Last Name is required." },
               })}
             />
             <br />
-            {errors.lname && (
+            {errors.lastname && (
               <p className="signup-error-message">
-                &#9888; {errors.lname.message}
+                &#9888; {errors.lastname.message}
               </p>
             )}
             <input

@@ -14,7 +14,7 @@ import UpcomingIcon from "../../assets/images/icons/upcoming.svg";
 import ProjectIcon from "../../assets/images/icons/project.svg";
 import "./Dashboard.css";
 
-const Dashboard = () => {
+const Dashboard = ({user}) => {
   const [seletedOption, setSeletedOption] = useState({add: false, edit: false, search: false, today: true, upcoming: false, project: false});
 
   const handleOptionSelect = (option) => {
@@ -63,7 +63,7 @@ const Dashboard = () => {
       </div>
       <div className="user-container">
         <img src={User} alt="user" />
-        <p style={{marginLeft: "12px"}}>Harsha Sudheer</p>
+        <p style={{marginLeft: "12px"}}>{`${user.firstname} ${user.lastname}`}</p>
       </div>
     </div>
   );
