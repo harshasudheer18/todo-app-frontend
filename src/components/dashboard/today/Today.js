@@ -17,7 +17,9 @@ const Today = () => {
             />
             Task one
           </label>
-          <p style={{color: "#5A5858", marginLeft: "30px"}}>This is the description for task one.</p>
+          <p style={{ color: "#5A5858", marginLeft: "30px" }}>
+            This is the description for task one.
+          </p>
           <p className="today-project-name">Inbox</p>
         </div>
         <div className="today-task">
@@ -30,13 +32,15 @@ const Today = () => {
             />
             Task two
           </label>
-          <p style={{color: "#5A5858", marginLeft: "30px"}}>This is the description for task two.</p>
+          <p style={{ color: "#5A5858", marginLeft: "30px" }}>
+            This is the description for task two.
+          </p>
           <p className="today-project-name">Inbox</p>
         </div>
         <div className="today-add-button">
-            <img src={Add} alt="add" />
-            <p>Add task</p>
-          </div>
+          <img src={Add} alt="add" />
+          <p>Add task</p>
+        </div>
       </div>
     </div>
   );
