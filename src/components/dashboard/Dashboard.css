@@ -43,6 +43,30 @@
     border-radius: 4px;
 }
 
+.projects {
+    margin-top: 32px;
+    display: flex;
+    justify-content: space-between;
+    padding: 4px;
+}
+
+.projects:hover {
+    background-color: rgba(176, 147, 117, 0.2);
+    border-radius: 4px;
+}
+
+.plus {
+    display: none;
+}
+
+.plus:hover {
+    cursor: pointer;
+}
+
+.projects:hover .plus{
+    display: inline;
+}
+
 .main-container {
     width: 75%;
 }

@@ -1,0 +1,65 @@
+.add-project-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.add-project-inner-container {
+    width: 30%;
+    background-color: white;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 4px;
+    padding: 20px 16px;
+}
+
+.add-project-heading {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.add-project-form {
+    margin-top: 12px;
+}
+
+.add-project-input {
+    width: 100%;
+    height: 28px;
+    margin-top: 4px;
+    padding-left: 4px;
+}
+
+.add-project-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 40px;
+}
+
+.add-project-button {
+    width: 45%;
+    height: 32px;
+    border: 1px solid #875233;
+    background-color: #FCFAF8;
+    border-radius: 4px;
+}
+
+.add-project-button-cancel:hover {
+    background-color: rgba(176, 147, 117, 0.4);
+}
+
+.add-project-button-save {
+    background-color: #875233;
+    color: white
+}
+
+.add-project-button-save:hover {
+    background-color: #A0613C;
+}
+
+.add-project-error-message {
+    color: #FF7272;
+    width: 480px;
+}

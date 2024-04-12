@@ -1,7 +1,7 @@
 import React from "react";
 import Dropdown from "../../../assets/images/icons/dropdown.svg";
 import "./AddTask.css";
-const AddTask = () => {
+const AddTask = ({handleOptionSelect}) => {
   return (
     <div className="add-container">
       <div className="add-inner-container">
@@ -44,7 +44,7 @@ const AddTask = () => {
               </div>
             </div>
             <div className="add-button-container">
-              <button className="add-button add-button-cancel">CANCEL</button>
+              <button className="add-button add-button-cancel" onClick={ () => handleOptionSelect("today")}>CANCEL</button>
               <button className="add-button add-button-save">SAVE</button>
             </div>
           </div>
