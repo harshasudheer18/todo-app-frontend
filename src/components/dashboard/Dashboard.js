@@ -57,7 +57,7 @@ const Dashboard = () => {
         {seletedOption.add && <AddTask/>}
         {seletedOption.edit && <EditTask/>}
         {seletedOption.search && <Search/>}
-        {seletedOption.today && <Today/>}
+        {seletedOption.today && <Today handleOptionSelect={handleOptionSelect}/>}
         {seletedOption.upcoming && <Upcoming/>}
         {seletedOption.project && <Project/>}
       </div>

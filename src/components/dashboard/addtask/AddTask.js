@@ -18,7 +18,7 @@ const AddTask = () => {
           <p
             style={{
               color: "#5A5858",
-              fontWeight: "400",
+              fontWeight: "400px",
               fontSize: "20px",
               marginTop: "8px",
               paddingLeft: "32px",

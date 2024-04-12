@@ -2,12 +2,12 @@ import React from "react";
 import Add from "../../../assets/images/icons/add.svg";
 import "./Today.css";
 
-const Today = () => {
+const Today = ({handleOptionSelect}) => {
   return (
     <div className="today-container">
       <div className="today-inner-container">
         <h1>Today</h1>
-        <div className="today-task">
+        <div className="today-task" onClick={() =>  handleOptionSelect("edit")}>
           <label className="today-task-name">
             <input
               className="today-task-checkbox"
@@ -22,7 +22,7 @@ const Today = () => {
           </p>
           <p className="today-project-name">Inbox</p>
         </div>
-        <div className="today-task">
+        <div className="today-task" onClick={() =>  handleOptionSelect("edit")}>
           <label className="today-task-name">
             <input
               className="today-task-checkbox"
