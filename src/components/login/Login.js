@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from 'react-router-dom';
+import { submitLogin } from "./api/ApiCalls";
 import Welcome from "../../assets/images/welcome.jpg";
 import Logo from "../../assets/images/logo.svg";
 import "./Login.css";
@@ -12,9 +13,14 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
-    navigate('/dashboard');
+  const onSubmit = async (data) => {
+    try {
+      const response = await submitLogin(data);
+      localStorage.setItem("token", response.data.token);
+      navigate("/dashboard");
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <div className="login-container">
