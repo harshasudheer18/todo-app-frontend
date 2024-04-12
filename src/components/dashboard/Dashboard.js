@@ -5,6 +5,7 @@ import Search from "./search/Search";
 import Today from "./today/Today";
 import Upcoming from "./upcoming/Upcoming";
 import Project from "./project/Project";
+import { getProjects } from "./api/ApiCalls";
 import AddProject from "./addproject/AddProject";
 import User from "../../assets/images/icons/user.svg";
 import Logo from "../../assets/images/logo.svg";
@@ -26,13 +27,19 @@ const Dashboard = () => {
     upcoming: false,
     project: false,
   });
-
   const [isAddProject, setIsAddProject] = useState(false);
+  const [projects, setProjects] = useState();
 
   useEffect(() => {
     const user = localStorage.getItem("user");
     setUser(JSON.parse(user));
-  },[]);
+
+    const fetchProjects = async () => {
+      const response = await getProjects();
+      setProjects(response.data);
+    };
+    fetchProjects();
+  }, []);
 
   const handleOptionSelect = (option) => {
     let currentOption = { ...seletedOption };
@@ -94,19 +101,30 @@ const Dashboard = () => {
           </div>
           <div className="projects">
             <h2>My Projects</h2>
-            <img className="plus" src={Plus} alt="plus" onClick={() => setIsAddProject(true)}/>
+            <img
+              className="plus"
+              src={Plus}
+              alt="plus"
+              onClick={() => setIsAddProject(true)}
+            />
           </div>
-          <div
-            className={
-              seletedOption.project
-                ? "sidebar-button sidebar-button-selected"
-                : "sidebar-button"
-            }
-            onClick={() => handleOptionSelect("project")}
-          >
-            <img src={ProjectIcon} alt="project" />
-            <p>Inbox</p>
-          </div>
+          {projects &&
+            projects.map((project) => {
+              return (
+                <div
+                key={project.id}
+                  className={
+                    seletedOption.project
+                      ? "sidebar-button sidebar-button-selected"
+                      : "sidebar-button"
+                  }
+                  onClick={() => handleOptionSelect("project")}
+                >
+                  <img src={ProjectIcon} alt="project" />
+                  <p>{project.title}</p>
+                </div>
+              );
+            })}
         </div>
       </div>
       <div className="main-container">
@@ -127,7 +145,7 @@ const Dashboard = () => {
           style={{ marginLeft: "12px" }}
         >{`${user?.firstname} ${user?.lastname}`}</p>
       </div>
-      {isAddProject && <AddProject setIsAddProject={setIsAddProject}/>}
+      {isAddProject && <AddProject setIsAddProject={setIsAddProject} />}
     </div>
   );
 };

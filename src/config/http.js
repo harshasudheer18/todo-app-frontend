@@ -12,7 +12,7 @@ export const post = async (url, body, headers) => {
 
 export const get = async (url, headers) => {
     try{
-        const res = axios.get(url, {headers: headers});
+        const res = await axios.get(url, {headers: headers});
         return res;
     }
     catch(err){
@@ -22,7 +22,7 @@ export const get = async (url, headers) => {
 
 export const del = async (url, headers) => {
     try{
-        const res = axios.delete(url, {headers: headers});
+        const res = await axios.delete(url, {headers: headers});
         return res;
     }
     catch(err){
@@ -32,7 +32,7 @@ export const del = async (url, headers) => {
 
 export const put = async (url, body, headers) => {
     try{
-        const res = axios.put(url, body, {headers: headers});
+        const res = await axios.put(url, body, {headers: headers});
         return res;
     }
     catch(err){
