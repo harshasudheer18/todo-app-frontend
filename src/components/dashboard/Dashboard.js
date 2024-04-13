@@ -6,7 +6,9 @@ import Today from "./today/Today";
 import Upcoming from "./upcoming/Upcoming";
 import Project from "./project/Project";
 import { getProjects } from "./api/ApiCalls";
-import AddProject from "./addproject/AddProject";
+import AddProject from "./project/addproject/AddProject";
+import DeleteProject from "./project/deleteproject/DeleteProject";
+import EditProject from "./project/editproject/EditProject";
 import User from "../../assets/images/icons/user.svg";
 import Logo from "../../assets/images/logo.svg";
 import Add from "../../assets/images/icons/add.svg";
@@ -15,6 +17,8 @@ import TodayIcon from "../../assets/images/icons/today.svg";
 import UpcomingIcon from "../../assets/images/icons/upcoming.svg";
 import ProjectIcon from "../../assets/images/icons/project.svg";
 import Plus from "../../assets/images/icons/plus.svg";
+import Edit from "../../assets/images/icons/edit.svg";
+import Delete from "../../assets/images/icons/delete.svg";
 import "./Dashboard.css";
 
 const Dashboard = () => {
@@ -25,19 +29,25 @@ const Dashboard = () => {
     search: false,
     today: true,
     upcoming: false,
-    project: false,
+    project: false
   });
-  const [isAddProject, setIsAddProject] = useState(false);
+  const [seletedProjectOption, setSeletedProjectOption] = useState({add: false, edit: false, delete: false});
   const [projects, setProjects] = useState();
+  const [selectedProject, setSelectedProject] = useState();
+
+  const fetchProjects = async () => {
+    const response = await getProjects();
+    const projects = response.data.map((project) => {
+      return(
+        {...project, display: false}
+      );
+    });
+    setProjects(projects);
+  };
 
   useEffect(() => {
     const user = localStorage.getItem("user");
     setUser(JSON.parse(user));
-
-    const fetchProjects = async () => {
-      const response = await getProjects();
-      setProjects(response.data);
-    };
     fetchProjects();
   }, []);
 
@@ -49,6 +59,39 @@ const Dashboard = () => {
     currentOption[option] = true;
     setSeletedOption(currentOption);
   };
+
+  const handleProjectSelect = (id) => {
+    const updatedProjects = projects.map((project) => {
+      if(project.id === id){
+        return(
+          {...project, display: true}
+        );
+      }
+      return(
+        {...project, display: false}
+      );
+    });
+    setProjects(updatedProjects);
+    handleOptionSelect("project");
+  }
+
+  const handleProjectOptionSelect = (projectOption, projectDetails) => {
+    let currentProjectOption = { ...seletedProjectOption };
+    for (const key in currentProjectOption) {
+      currentProjectOption[key] = false;
+    }
+    currentProjectOption[projectOption] = true;
+    setSelectedProject(projectDetails);
+    setSeletedProjectOption(currentProjectOption);
+  }
+
+  const handleProjectPopupClose = () => {
+    let currentProjectOption = { ...seletedProjectOption };
+    for (const key in currentProjectOption) {
+      currentProjectOption[key] = false;
+    }
+    setSeletedProjectOption(currentProjectOption);
+  }
 
   return (
     <div className="dashboard-container">
@@ -105,23 +148,28 @@ const Dashboard = () => {
               className="plus"
               src={Plus}
               alt="plus"
-              onClick={() => setIsAddProject(true)}
+              onClick={() => handleProjectOptionSelect("add")}
             />
           </div>
           {projects &&
             projects.map((project) => {
               return (
                 <div
-                key={project.id}
+                  key={project.id}
                   className={
-                    seletedOption.project
-                      ? "sidebar-button sidebar-button-selected"
-                      : "sidebar-button"
+                    (seletedOption.project && project.display)
+                      ? "sidebar-project-button sidebar-button-selected"
+                      : "sidebar-project-button"
                   }
-                  onClick={() => handleOptionSelect("project")}
                 >
-                  <img src={ProjectIcon} alt="project" />
-                  <p>{project.title}</p>
+                  <div className="sidebar-project-name" onClick={() => handleProjectSelect(project.id)}>
+                    <img src={ProjectIcon} alt="project" />
+                    <p>{project.title}</p>
+                  </div>
+                  <div className="sidebar-project-options">
+                    <img src={Edit} alt="edit" onClick={() => handleProjectOptionSelect("edit", project)}/>
+                    <img src={Delete} alt="delete" onClick={() => handleProjectOptionSelect("delete", project)}/>
+                  </div>
                 </div>
               );
             })}
@@ -145,7 +193,9 @@ const Dashboard = () => {
           style={{ marginLeft: "12px" }}
         >{`${user?.firstname} ${user?.lastname}`}</p>
       </div>
-      {isAddProject && <AddProject setIsAddProject={setIsAddProject} />}
+      {seletedProjectOption.add && <AddProject handleProjectPopupClose={handleProjectPopupClose} fetchProjects={fetchProjects}/>}
+      {seletedProjectOption.delete && <DeleteProject selectedProject={selectedProject} handleProjectPopupClose={handleProjectPopupClose} fetchProjects={fetchProjects}/>}
+      {seletedProjectOption.edit && <EditProject selectedProject={selectedProject} handleProjectPopupClose={handleProjectPopupClose} fetchProjects={fetchProjects}/>}
     </div>
   );
 };

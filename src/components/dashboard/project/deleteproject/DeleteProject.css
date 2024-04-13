@@ -1,0 +1,50 @@
+.delete-project-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.delete-project-inner-container {
+    width: 30%;
+    background-color: white;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 4px;
+    padding: 20px 16px;
+}
+
+.delete-project-heading {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.delete-project-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 40px;
+}
+
+.delete-project-button {
+    width: 45%;
+    height: 32px;
+    border: 1px solid #875233;
+    background-color: #FCFAF8;
+    border-radius: 4px;
+}
+
+.delete-project-button-cancel:hover {
+    background-color: rgba(176, 147, 117, 0.4);
+}
+
+.delete-project-button-save {
+    background-color: #875233;
+    color: white
+}
+
+.delete-project-button-save:hover {
+    background-color: #A0613C;
+}
