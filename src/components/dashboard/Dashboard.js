@@ -205,7 +205,7 @@ const Dashboard = () => {
         {seletedOption.today && (
           <Today tasks={tasks} handleOptionSelect={handleOptionSelect} />
         )}
-        {seletedOption.upcoming && <Upcoming />}
+        {seletedOption.upcoming && <Upcoming tasks={tasks} handleOptionSelect={handleOptionSelect}/>}
         {seletedOption.project && <Project selectedProject={selectedProject} tasks={tasks}/>}
       </div>
       <div className="user-container">

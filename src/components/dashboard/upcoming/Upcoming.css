@@ -9,10 +9,24 @@
     margin-top: 80px;
 }
 
-.date-picker {
+.upcoming-date-picker-container {
     display: flex;
-    gap: 12px;
+    justify-content: space-between;
+    width: 10%;
     margin-top: 16px;
+    position: relative;
+}
+
+.upcoming-date-picker {
+    background-color: #FCFAF8;
+    border: 0;
+    position: absolute;
+    right: 0;
+    opacity: 0;
+}
+
+.upcoming-date-picker::-webkit-calendar-picker-indicator:hover {
+    cursor: pointer;
 }
 
 .upcoming-tasks {
