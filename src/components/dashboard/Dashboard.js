@@ -29,18 +29,20 @@ const Dashboard = () => {
     search: false,
     today: true,
     upcoming: false,
-    project: false
+    project: false,
   });
-  const [seletedProjectOption, setSeletedProjectOption] = useState({add: false, edit: false, delete: false});
+  const [seletedProjectOption, setSeletedProjectOption] = useState({
+    add: false,
+    edit: false,
+    delete: false,
+  });
   const [projects, setProjects] = useState();
   const [selectedProject, setSelectedProject] = useState();
 
   const fetchProjects = async () => {
     const response = await getProjects();
     const projects = response.data.map((project) => {
-      return(
-        {...project, display: false}
-      );
+      return { ...project, display: false };
     });
     setProjects(projects);
   };
@@ -62,18 +64,14 @@ const Dashboard = () => {
 
   const handleProjectSelect = (id) => {
     const updatedProjects = projects.map((project) => {
-      if(project.id === id){
-        return(
-          {...project, display: true}
-        );
+      if (project.id === id) {
+        return { ...project, display: true };
       }
-      return(
-        {...project, display: false}
-      );
+      return { ...project, display: false };
     });
     setProjects(updatedProjects);
     handleOptionSelect("project");
-  }
+  };
 
   const handleProjectOptionSelect = (projectOption, projectDetails) => {
     let currentProjectOption = { ...seletedProjectOption };
@@ -83,7 +81,7 @@ const Dashboard = () => {
     currentProjectOption[projectOption] = true;
     setSelectedProject(projectDetails);
     setSeletedProjectOption(currentProjectOption);
-  }
+  };
 
   const handleProjectPopupClose = () => {
     let currentProjectOption = { ...seletedProjectOption };
@@ -91,7 +89,7 @@ const Dashboard = () => {
       currentProjectOption[key] = false;
     }
     setSeletedProjectOption(currentProjectOption);
-  }
+  };
 
   return (
     <div className="dashboard-container">
@@ -157,18 +155,31 @@ const Dashboard = () => {
                 <div
                   key={project.id}
                   className={
-                    (seletedOption.project && project.display)
+                    seletedOption.project && project.display
                       ? "sidebar-project-button sidebar-button-selected"
                       : "sidebar-project-button"
                   }
                 >
-                  <div className="sidebar-project-name" onClick={() => handleProjectSelect(project.id)}>
+                  <div
+                    className="sidebar-project-name"
+                    onClick={() => handleProjectSelect(project.id)}
+                  >
                     <img src={ProjectIcon} alt="project" />
                     <p>{project.title}</p>
                   </div>
                   <div className="sidebar-project-options">
-                    <img src={Edit} alt="edit" onClick={() => handleProjectOptionSelect("edit", project)}/>
-                    <img src={Delete} alt="delete" onClick={() => handleProjectOptionSelect("delete", project)}/>
+                    <img
+                      src={Edit}
+                      alt="edit"
+                      onClick={() => handleProjectOptionSelect("edit", project)}
+                    />
+                    <img
+                      src={Delete}
+                      alt="delete"
+                      onClick={() =>
+                        handleProjectOptionSelect("delete", project)
+                      }
+                    />
                   </div>
                 </div>
               );
@@ -177,7 +188,7 @@ const Dashboard = () => {
       </div>
       <div className="main-container">
         {seletedOption.add && (
-          <AddTask handleOptionSelect={handleOptionSelect} />
+          <AddTask projects={projects}handleOptionSelect={handleOptionSelect} />
         )}
         {seletedOption.edit && <EditTask />}
         {seletedOption.search && <Search />}
@@ -193,9 +204,26 @@ const Dashboard = () => {
           style={{ marginLeft: "12px" }}
         >{`${user?.firstname} ${user?.lastname}`}</p>
       </div>
-      {seletedProjectOption.add && <AddProject handleProjectPopupClose={handleProjectPopupClose} fetchProjects={fetchProjects}/>}
-      {seletedProjectOption.delete && <DeleteProject selectedProject={selectedProject} handleProjectPopupClose={handleProjectPopupClose} fetchProjects={fetchProjects}/>}
-      {seletedProjectOption.edit && <EditProject selectedProject={selectedProject} handleProjectPopupClose={handleProjectPopupClose} fetchProjects={fetchProjects}/>}
+      {seletedProjectOption.add && (
+        <AddProject
+          handleProjectPopupClose={handleProjectPopupClose}
+          fetchProjects={fetchProjects}
+        />
+      )}
+      {seletedProjectOption.delete && (
+        <DeleteProject
+          selectedProject={selectedProject}
+          handleProjectPopupClose={handleProjectPopupClose}
+          fetchProjects={fetchProjects}
+        />
+      )}
+      {seletedProjectOption.edit && (
+        <EditProject
+          selectedProject={selectedProject}
+          handleProjectPopupClose={handleProjectPopupClose}
+          fetchProjects={fetchProjects}
+        />
+      )}
     </div>
   );
 };

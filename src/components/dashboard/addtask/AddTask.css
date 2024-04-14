@@ -32,7 +32,83 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* background-color: aliceblue; */
+}
+
+.add-name-input {
+    color: #5A5858;
+    margin-top: 24px;
+    margin-left: 32px;
+    border: none;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.add-name-input:focus {
+    outline: none;
+}
+
+.add-description-input {
+    width: 88%;
+    height: 320px;
+    color: #5A5858;
+    font-weight: 400px;
+    font-size: 20px;
+    margin-top: 8px;
+    margin-left: 32px;
+    border: none;
+}
+
+.add-description-input:focus {
+    outline: none;
+}
+
+.add-options {
+    background-color: #FCFAF8;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 4px;
+    margin-top: -4px;
+    padding: 4px;
+}
+
+.add-option {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: #5A5858;
+    padding: 4px;
+}
+
+.add-option:hover {
+    background-color: rgba(176, 147, 117, 0.1);
+    cursor: pointer;
+}
+
+.selected-add-option {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 4px;
+    margin-left: 12px;
+}
+
+.add-date-picker-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 4px;
+    padding: 4px;
+}
+
+.add-date-picker {
+    background-color: #FCFAF8;
+    border: 0;
+    position: absolute;
+    right: 0;
+    opacity: 0;
+}
+
+.add-date-picker::-webkit-calendar-picker-indicator:hover {
+    cursor: pointer;
 }
 
 .add-option-button {
@@ -45,10 +121,18 @@
 
 .add-option-button:hover {
     background-color: rgba(176, 147, 117, 0.4);
-    cursor: pointer;;
+}
+
+.add-dropdown:hover {
+    cursor: pointer;
+}
+
+.add-option-button-selected {
+    background-color: rgba(176, 147, 117, 0.4);
 }
 
 .add-button-container {
+    margin-top: 12px;
     margin-bottom: 12px;
     display: flex;
     justify-content: space-between
