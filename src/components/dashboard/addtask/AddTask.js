@@ -8,7 +8,7 @@ import Flag2 from "../../../assets/images/icons/orange-flag.svg";
 import Flag3 from "../../../assets/images/icons/blue-flag.svg";
 import Flag4 from "../../../assets/images/icons/green-flag.svg";
 import "./AddTask.css";
-const AddTask = ({ projects, handleOptionSelect }) => {
+const AddTask = ({ projects, fetchTasks, handleOptionSelect }) => {
   const [task, setTask] = useState({
     title: null,
     description: null,
@@ -66,6 +66,7 @@ const AddTask = ({ projects, handleOptionSelect }) => {
       if(task.title !== null && task.description !== null && task.project !== null && task.deadline !== null && task.priority !== null){
         console.log({...task, deadline: `${task["deadline"]}T17:42:13.212Z`});
         await submitTask({...task, deadline: `${task["deadline"]}T17:42:13.212Z`});
+        fetchTasks();
         handleOptionSelect("today");
       }
     }

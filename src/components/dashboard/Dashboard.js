@@ -5,7 +5,7 @@ import Search from "./search/Search";
 import Today from "./today/Today";
 import Upcoming from "./upcoming/Upcoming";
 import Project from "./project/Project";
-import { getProjects } from "./api/ApiCalls";
+import { getProjects, getTasks } from "./api/ApiCalls";
 import AddProject from "./project/addproject/AddProject";
 import DeleteProject from "./project/deleteproject/DeleteProject";
 import EditProject from "./project/editproject/EditProject";
@@ -37,6 +37,7 @@ const Dashboard = () => {
     delete: false,
   });
   const [projects, setProjects] = useState();
+  const [tasks, setTasks] = useState();
   const [selectedProject, setSelectedProject] = useState();
 
   const fetchProjects = async () => {
@@ -47,10 +48,17 @@ const Dashboard = () => {
     setProjects(projects);
   };
 
+  const fetchTasks = async () => {
+    const response = await getTasks();
+    console.log(response.data);
+    setTasks(response.data);
+  };
+
   useEffect(() => {
     const user = localStorage.getItem("user");
     setUser(JSON.parse(user));
     fetchProjects();
+    fetchTasks();
   }, []);
 
   const handleOptionSelect = (option) => {
@@ -188,12 +196,12 @@ const Dashboard = () => {
       </div>
       <div className="main-container">
         {seletedOption.add && (
-          <AddTask projects={projects}handleOptionSelect={handleOptionSelect} />
+          <AddTask projects={projects} fetchTasks={fetchTasks} handleOptionSelect={handleOptionSelect} />
         )}
         {seletedOption.edit && <EditTask />}
         {seletedOption.search && <Search />}
         {seletedOption.today && (
-          <Today handleOptionSelect={handleOptionSelect} />
+          <Today tasks={tasks} handleOptionSelect={handleOptionSelect} />
         )}
         {seletedOption.upcoming && <Upcoming />}
         {seletedOption.project && <Project />}
