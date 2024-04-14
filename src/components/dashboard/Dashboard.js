@@ -70,18 +70,20 @@ const Dashboard = () => {
     setSeletedOption(currentOption);
   };
 
-  const handleProjectSelect = (id) => {
+  const handleProjectSelect = (currentProject) => {
     const updatedProjects = projects.map((project) => {
-      if (project.id === id) {
+      if (project.id === currentProject.id) {
         return { ...project, display: true };
       }
       return { ...project, display: false };
     });
     setProjects(updatedProjects);
+    setSelectedProject(currentProject);
     handleOptionSelect("project");
   };
 
   const handleProjectOptionSelect = (projectOption, projectDetails) => {
+    console.log(projectOption, projectDetails);
     let currentProjectOption = { ...seletedProjectOption };
     for (const key in currentProjectOption) {
       currentProjectOption[key] = false;
@@ -170,7 +172,7 @@ const Dashboard = () => {
                 >
                   <div
                     className="sidebar-project-name"
-                    onClick={() => handleProjectSelect(project.id)}
+                    onClick={() => handleProjectSelect(project)}
                   >
                     <img src={ProjectIcon} alt="project" />
                     <p>{project.title}</p>
@@ -204,7 +206,7 @@ const Dashboard = () => {
           <Today tasks={tasks} handleOptionSelect={handleOptionSelect} />
         )}
         {seletedOption.upcoming && <Upcoming />}
-        {seletedOption.project && <Project />}
+        {seletedOption.project && <Project selectedProject={selectedProject} tasks={tasks}/>}
       </div>
       <div className="user-container">
         <img src={User} alt="user" />
