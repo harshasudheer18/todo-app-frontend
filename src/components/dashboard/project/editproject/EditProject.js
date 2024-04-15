@@ -79,7 +79,7 @@ const EditProject = ({
             >
               <button
                 className="edit-project-button edit-project-button-cancel"
-                onClick={() => handleProjectPopupClose(false)}
+                onClick={handleProjectPopupClose}
               >
                 CANCEL
               </button>

@@ -8,11 +8,13 @@ import "./Login.css";
 
 const Login = () => {
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   const onSubmit = async (data) => {
     try {
       const response = await submitLogin(data);
@@ -28,6 +30,7 @@ const Login = () => {
       console.log(err);
     }
   };
+
   return (
     <div className="login-container">
       <img className="welcome-img" src={Welcome} alt="welcome" />

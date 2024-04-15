@@ -35,7 +35,7 @@ const DeleteProject = ({
           >
             <button
               className="delete-project-button delete-project-button-cancel"
-              onClick={() => handleProjectPopupClose(false)}
+              onClick={handleProjectPopupClose}
             >
               CANCEL
             </button>

@@ -1,8 +1,9 @@
 import React from "react";
+import Task from "../common/Task";
 import Add from "../../../assets/images/icons/add.svg";
 import "./Today.css";
 
-const Today = ({ tasks, handleOptionSelect }) => {
+const Today = ({ tasks, handleTaskOptionSelect }) => {
   const isToday = (dateString) => {
     const date = new Date(dateString);
     const today = new Date();
@@ -21,26 +22,7 @@ const Today = ({ tasks, handleOptionSelect }) => {
         {tasks &&
           todayTasks.map((task) => {
             return (
-              <div
-                className="today-task"
-                key={task.id}
-                onClick={() => handleOptionSelect("edit")}
-              >
-                <label className="today-task-name">
-                  <input
-                    className="today-task-checkbox"
-                    type="checkbox"
-                    value="Task one"
-                    checked={false}
-                    readOnly={true}
-                  />
-                  <p>{task.title}</p>
-                </label>
-                <p style={{ color: "#5A5858", marginLeft: "30px" }}>
-                  {task.description}
-                </p>
-                <p className="today-project-name">{task.project.title}</p>
-              </div>
+              <Task key={task.id} task={task} info={task.project.title} handleTaskOptionSelect={handleTaskOptionSelect}/>
             );
           })}
         <div className="today-add-button">

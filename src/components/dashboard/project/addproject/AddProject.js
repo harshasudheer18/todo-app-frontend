@@ -71,7 +71,7 @@ const AddProject = ({ handleProjectPopupClose, fetchProjects }) => {
             >
               <button
                 className="add-project-button add-project-button-cancel"
-                onClick={() => handleProjectPopupClose(false)}
+                onClick={handleProjectPopupClose}
               >
                 CANCEL
               </button>
