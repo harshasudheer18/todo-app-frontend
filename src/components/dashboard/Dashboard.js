@@ -154,7 +154,7 @@ const Dashboard = () => {
               className="plus"
               src={Plus}
               alt="plus"
-              onClick={() => handleProjectOptionSelect("add")}
+              onClick={() => handleProjectOptionSelect("add", "")}
             />
           </div>
           {projects &&
@@ -199,7 +199,7 @@ const Dashboard = () => {
           <AddTask projects={projects} fetchTasks={fetchTasks} handleOptionSelect={handleOptionSelect} />
         )}
         {seletedOption.edit && <EditTask />}
-        {seletedOption.search && <Search />}
+        {seletedOption.search && <Search handleOptionSelect={handleOptionSelect}/>}
         {seletedOption.today && (
           <Today tasks={tasks} handleOptionSelect={handleOptionSelect} />
         )}

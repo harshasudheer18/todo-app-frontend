@@ -7,7 +7,7 @@ import Today from "../../../assets/images/icons/today-grey.svg";
 import Upcoming from "../../../assets/images/icons/upcoming-grey.svg";
 import "./Search.css";
 
-const Search = () => {
+const Search = ( {handleOptionSelect} ) => {
   return (
     <div className="search-container">
       <div className="search-inner-container">
@@ -41,15 +41,15 @@ const Search = () => {
         </div>
         <div className="links-container">
           <p style={{color: "#767676", paddingLeft: "16px", paddingTop: "8px"}}>Navigation</p>
-          <div className="links-item">
+          <div className="links-item" onClick={() => handleOptionSelect("today")}>
             <img src={Home} alt="home" />
             <p>Home</p>
           </div>
-          <div className="links-item">
+          <div className="links-item" onClick={() => handleOptionSelect("today")}>
             <img src={Today} alt="today" />
             <p>Today</p>
           </div>
-          <div className="links-item">
+          <div className="links-item" onClick={() => handleOptionSelect("upcoming")}>
             <img src={Upcoming} alt="upcoming" />
             <p>Upcoming</p>
           </div>
