@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import AddTaskButton from "../common/AddTaskButton";
 import Dropdown from "../../../assets/images/icons/dropdown-brown.svg";
-import Add from "../../../assets/images/icons/add.svg";
 import "./Upcoming.css";
 
 const Upcoming = ({ tasks, handleOptionSelect }) => {
@@ -78,10 +78,7 @@ const Upcoming = ({ tasks, handleOptionSelect }) => {
                   );
                 })}
             </div>
-            <div className="upcoming-add-button">
-              <img src={Add} alt="add" />
-              <p>Add task</p>
-            </div>
+            <AddTaskButton handleOptionSelect={handleOptionSelect}/>
           </div>
           <div className="upcoming-task-container">
             <div>
@@ -115,10 +112,7 @@ const Upcoming = ({ tasks, handleOptionSelect }) => {
                     </div>
                   );
                 })}
-              <div className="upcoming-add-button">
-                <img src={Add} alt="add" />
-                <p>Add task</p>
-              </div>
+              <AddTaskButton/>
             </div>
           </div>
           <div className="upcoming-task-container">
@@ -153,10 +147,7 @@ const Upcoming = ({ tasks, handleOptionSelect }) => {
                     </div>
                   );
                 })}
-              <div className="upcoming-add-button">
-                <img src={Add} alt="add" />
-                <p>Add task</p>
-              </div>
+              <AddTaskButton/>
             </div>
           </div>
         </div>

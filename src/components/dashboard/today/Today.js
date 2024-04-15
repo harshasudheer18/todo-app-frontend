@@ -1,9 +1,9 @@
 import React from "react";
 import Task from "../common/Task";
-import Add from "../../../assets/images/icons/add.svg";
+import AddTaskButton from "../common/AddTaskButton";
 import "./Today.css";
 
-const Today = ({ tasks, handleTaskOptionSelect }) => {
+const Today = ({ tasks, handleOptionSelect, handleTaskOptionSelect }) => {
   const isToday = (dateString) => {
     const date = new Date(dateString);
     const today = new Date();
@@ -25,10 +25,7 @@ const Today = ({ tasks, handleTaskOptionSelect }) => {
               <Task key={task.id} task={task} info={task.project.title} handleTaskOptionSelect={handleTaskOptionSelect}/>
             );
           })}
-        <div className="today-add-button">
-          <img src={Add} alt="add" />
-          <p>Add task</p>
-        </div>
+        <AddTaskButton handleOptionSelect={handleOptionSelect}/>
       </div>
     </div>
   );

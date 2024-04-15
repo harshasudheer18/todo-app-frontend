@@ -1,6 +1,6 @@
 import React from "react";
+import AddTaskButton from "../common/AddTaskButton";
 import Task from "../common/Task";
-import Add from "../../../assets/images/icons/add.svg";
 import "./Project.css";
 
 const Project = ({ selectedProject, tasks, handleOptionSelect, handleTaskOptionSelect }) => {
@@ -23,10 +23,7 @@ const Project = ({ selectedProject, tasks, handleOptionSelect, handleTaskOptionS
               })} handleTaskOptionSelect={handleTaskOptionSelect}/>
             );
           })}
-        <div className="project-add-button">
-          <img src={Add} alt="add" />
-          <p>Add task</p>
-        </div>
+        <AddTaskButton handleOptionSelect={handleOptionSelect}/>
       </div>
     </div>
   );

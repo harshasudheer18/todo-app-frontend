@@ -224,7 +224,7 @@ const Dashboard = () => {
         )}
         {seletedOption.search && <Search handleOptionSelect={handleOptionSelect}/>}
         {seletedOption.today && (
-          <Today tasks={tasks} handleTaskOptionSelect={handleTaskOptionSelect}/>
+          <Today tasks={tasks} handleOptionSelect={handleOptionSelect} handleTaskOptionSelect={handleTaskOptionSelect}/>
         )}
         {seletedOption.upcoming && <Upcoming tasks={tasks} handleOptionSelect={handleOptionSelect}/>}
         {seletedOption.project && <Project selectedProject={selectedProject} tasks={tasks} handleOptionSelect={handleOptionSelect} handleTaskOptionSelect={handleTaskOptionSelect}/>}
