@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import AddTaskButton from "../common/AddTaskButton";
 import Dropdown from "../../../assets/images/icons/dropdown-brown.svg";
+import Edit from "../../../assets/images/icons/edit.svg";
+import Delete from "../../../assets/images/icons/delete.svg";
 import "./Upcoming.css";
 
-const Upcoming = ({ tasks, handleOptionSelect }) => {
+const Upcoming = ({ tasks, handleOptionSelect, handleTaskOptionSelect }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const dateCompare = (dateString, offset) => {
     const date = new Date(dateString);
@@ -21,13 +23,21 @@ const Upcoming = ({ tasks, handleOptionSelect }) => {
   const getDayAndDayOfWeek = (offset) => {
     let date = new Date(currentDate);
     date.setDate(date.getDate() + offset);
-    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const daysOfWeek = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
 
     const dayOfWeek = daysOfWeek[date.getDay()];
     const dayOfMonth = date.getDate();
 
-    return(`${dayOfMonth} . ${dayOfWeek}`);
-}
+    return `${dayOfMonth} . ${dayOfWeek}`;
+  };
 
   return (
     <div className="upcoming-container">
@@ -54,100 +64,160 @@ const Upcoming = ({ tasks, handleOptionSelect }) => {
                 tasks1.map((task) => {
                   return (
                     <div className="upcoming-task" key={task.id}>
-                      <label className="upcoming-task-name">
-                        <input
-                          className="upcoming-task-checkbox"
-                          type="checkbox"
-                          value="Task one"
-                          checked={false}
-                          readOnly={true}
-                        />
-                        <p>{task.title}</p>
-                      </label>
-                      <p
+                      <div
                         style={{
-                          color: "#5A5858",
-                          marginLeft: "30px",
-                          width: "60%",
+                          display: "flex",
+                          justifyContent: "space-between",
                         }}
                       >
-                        {task.description}
+                        <div className="upcoming-task-content-container" onClick={() => handleTaskOptionSelect("edit", task)}>
+                          <label className="upcoming-task-name">
+                            <input
+                              className="upcoming-task-checkbox"
+                              type="checkbox"
+                              value="Task one"
+                              checked={false}
+                              readOnly={true}
+                            />
+                            <p>{task.title}</p>
+                          </label>
+                          <p
+                            style={{
+                              color: "#5A5858",
+                              marginLeft: "30px",
+                              width: "60%",
+                            }}
+                          >
+                            {task.description}
+                          </p>
+                        </div>
+                        <div className="upcoming-task-button-container">
+                          <img
+                            style={{ marginRight: "12px" }}
+                            src={Edit}
+                            alt="edit"
+                            onClick={() => handleTaskOptionSelect("edit", task)}
+                          />
+                          <img src={Delete} alt="delete" onClick={() => handleTaskOptionSelect("delete", task)}/>
+                        </div>
+                      </div>
+                      <p className="upcomg-project-name">
+                        {task.project.title}
                       </p>
-                      <p className="upcomg-project-name">{task.project.title}</p>
                     </div>
                   );
                 })}
             </div>
-            <AddTaskButton handleOptionSelect={handleOptionSelect}/>
+            <AddTaskButton handleOptionSelect={handleOptionSelect} />
           </div>
           <div className="upcoming-task-container">
             <div>
               <p style={{ fontSize: "20px", fontWeight: "900" }}>
-              {getDayAndDayOfWeek(1)}
+                {getDayAndDayOfWeek(1)}
               </p>
               {tasks2 &&
                 tasks2.map((task) => {
                   return (
                     <div className="upcoming-task" key={task.id}>
-                      <label className="upcoming-task-name">
-                        <input
-                          className="upcoming-task-checkbox"
-                          type="checkbox"
-                          value="Task one"
-                          checked={false}
-                          readOnly={true}
-                        />
-                        <p>{task.title}</p>
-                      </label>
-                      <p
+                      <div
                         style={{
-                          color: "#5A5858",
-                          marginLeft: "30px",
-                          width: "60%",
+                          display: "flex",
+                          justifyContent: "space-between",
                         }}
                       >
-                        {task.description}
+                        <div className="upcoming-task-content-container" onClick={() => handleTaskOptionSelect("edit", task)}>
+                          <label className="upcoming-task-name">
+                            <input
+                              className="upcoming-task-checkbox"
+                              type="checkbox"
+                              value="Task one"
+                              checked={false}
+                              readOnly={true}
+                            />
+                            <p>{task.title}</p>
+                          </label>
+                          <p
+                            style={{
+                              color: "#5A5858",
+                              marginLeft: "30px",
+                              width: "60%",
+                            }}
+                          >
+                            {task.description}
+                          </p>
+                        </div>
+                        <div className="upcoming-task-button-container">
+                          <img
+                            style={{ marginRight: "12px" }}
+                            src={Edit}
+                            alt="edit"
+                            onClick={() => handleTaskOptionSelect("edit", task)}
+                          />
+                          <img src={Delete} alt="delete" onClick={() => handleTaskOptionSelect("delete", task)}/>
+                        </div>
+                      </div>
+                      <p className="upcomg-project-name">
+                        {task.project.title}
                       </p>
-                      <p className="upcomg-project-name">{task.project.title}</p>
                     </div>
                   );
                 })}
-              <AddTaskButton/>
+              <AddTaskButton handleOptionSelect={handleOptionSelect} />
             </div>
           </div>
           <div className="upcoming-task-container">
             <div>
               <p style={{ fontSize: "20px", fontWeight: "900" }}>
-              {getDayAndDayOfWeek(2)}
+                {getDayAndDayOfWeek(2)}
               </p>
               {tasks3 &&
                 tasks3.map((task) => {
                   return (
                     <div className="upcoming-task" key={task.id}>
-                      <label className="upcoming-task-name">
-                        <input
-                          className="upcoming-task-checkbox"
-                          type="checkbox"
-                          value="Task one"
-                          checked={false}
-                          readOnly={true}
-                        />
-                        <p>{task.title}</p>
-                      </label>
-                      <p
+                      <div
                         style={{
-                          color: "#5A5858",
-                          marginLeft: "30px",
-                          width: "60%",
+                          display: "flex",
+                          justifyContent: "space-between",
                         }}
                       >
-                        {task.description}
+                        <div className="upcoming-task-content-container" onClick={() => handleTaskOptionSelect("edit", task)}>
+                          <label className="upcoming-task-name">
+                            <input
+                              className="upcoming-task-checkbox"
+                              type="checkbox"
+                              value="Task one"
+                              checked={false}
+                              readOnly={true}
+                            />
+                            <p>{task.title}</p>
+                          </label>
+                          <p
+                            style={{
+                              color: "#5A5858",
+                              marginLeft: "30px",
+                              width: "60%",
+                            }}
+                          >
+                            {task.description}
+                          </p>
+                        </div>
+                        <div className="upcoming-task-button-container">
+                          <img
+                            style={{ marginRight: "12px" }}
+                            src={Edit}
+                            alt="edit"
+                            onClick={() => handleTaskOptionSelect("edit", task)}
+                          />
+                          <img src={Delete} alt="delete" onClick={() => handleTaskOptionSelect("delete", task)}/>
+                        </div>
+                      </div>
+                      <p className="upcomg-project-name">
+                        {task.project.title}
                       </p>
-                      <p className="upcomg-project-name">{task.project.title}</p>
                     </div>
                   );
                 })}
-              <AddTaskButton/>
+              <AddTaskButton handleOptionSelect={handleOptionSelect} />
             </div>
           </div>
         </div>

@@ -48,7 +48,7 @@ const Dashboard = () => {
 
   const fetchProjects = async () => {
     const response = await getProjects();
-    const projects = response.data.map((project) => {
+    const projects = response?.data.map((project) => {
       return { ...project, display: false };
     });
     setProjects(projects);
@@ -226,7 +226,7 @@ const Dashboard = () => {
         {seletedOption.today && (
           <Today tasks={tasks} handleOptionSelect={handleOptionSelect} handleTaskOptionSelect={handleTaskOptionSelect}/>
         )}
-        {seletedOption.upcoming && <Upcoming tasks={tasks} handleOptionSelect={handleOptionSelect}/>}
+        {seletedOption.upcoming && <Upcoming tasks={tasks} handleOptionSelect={handleOptionSelect} handleTaskOptionSelect={handleTaskOptionSelect}/>}
         {seletedOption.project && <Project selectedProject={selectedProject} tasks={tasks} handleOptionSelect={handleOptionSelect} handleTaskOptionSelect={handleTaskOptionSelect}/>}
       </div>
       <div className="user-container">

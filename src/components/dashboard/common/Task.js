@@ -32,7 +32,7 @@ const Task = ({ task, info, handleTaskOptionSelect }) => {
           onClick={() => handleTaskOptionSelect("edit", task)}
         />
         <img src={Delete} alt="delete"
-          onClick={() => handleTaskOptionSelect("delete", task)} 
+          onClick={() => handleTaskOptionSelect("delete", task)}
         />
       </div>
       <p className="info">{info}</p>

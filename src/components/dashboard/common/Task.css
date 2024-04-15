@@ -45,7 +45,6 @@
     /* display: flex;
     gap: 12px; */
     display: inline;
-    margin-right: 8px;
 }
 
 .task-button-container:hover {

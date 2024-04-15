@@ -36,7 +36,7 @@
 }
 
 .upcoming-task-container {
-    width: 25%;
+    width: 30%;
 }
 
 .upcoming-task {
@@ -44,6 +44,14 @@
     border-radius: 4px;
     padding: 8px;
     margin-top: 12px;
+}
+
+.upcoming-task-content-container {
+    width: 80%;
+}
+
+.upcoming-task-content-container:hover {
+    cursor: pointer;
 }
 
 .upcoming-task-name {
@@ -61,6 +69,14 @@
     appearance: none;
     outline: none;
     cursor: pointer;
+}
+
+.upcoming-task-button-container {
+    display: none;
+}
+
+.upcoming-task:hover .upcoming-task-button-container {
+    display: inline;
 }
 
 .upcomg-project-name {

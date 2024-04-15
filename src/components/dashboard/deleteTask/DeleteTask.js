@@ -16,7 +16,7 @@ const DeleteTask = ({selectedTask, fetchTasks, handleTaskPopupClose}) => {
         <div className="delete-project-container">
           <div className="delete-project-inner-container">
             <p className="delete-project-heading">Delete Task?</p>
-            <p>This will permanently delete. Are you sure?</p>
+            <p>This will permanently delete "{selectedTask.title}". Are you sure?</p>
             <div className="delete-project-button-container">
               <div
                 style={{
