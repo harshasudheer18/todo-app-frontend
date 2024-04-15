@@ -50,7 +50,6 @@ const Dashboard = () => {
 
   const fetchTasks = async () => {
     const response = await getTasks();
-    console.log(response.data);
     setTasks(response.data);
   };
 
@@ -83,7 +82,6 @@ const Dashboard = () => {
   };
 
   const handleProjectOptionSelect = (projectOption, projectDetails) => {
-    console.log(projectOption, projectDetails);
     let currentProjectOption = { ...seletedProjectOption };
     for (const key in currentProjectOption) {
       currentProjectOption[key] = false;

@@ -10,11 +10,11 @@ import Flag4 from "../../../assets/images/icons/green-flag.svg";
 import "./AddTask.css";
 const AddTask = ({ projects, fetchTasks, handleOptionSelect }) => {
   const [task, setTask] = useState({
-    title: null,
-    description: null,
-    project: null,
-    deadline: null,
-    priority: null,
+    title: "",
+    description: "",
+    project: "",
+    deadline: "",
+    priority: "",
   });
   const [showProjects, setShowProjects] = useState(false);
   const [showPriority, setShowPriority] = useState(false);
@@ -63,8 +63,7 @@ const AddTask = ({ projects, fetchTasks, handleOptionSelect }) => {
 
   const handleSave = async () => {
     try{
-      if(task.title !== null && task.description !== null && task.project !== null && task.deadline !== null && task.priority !== null){
-        console.log({...task, deadline: `${task["deadline"]}T17:42:13.212Z`});
+      if(task.title !== "" && task.description !== "" && task.project !== "" && task.deadline !== "" && task.priority !== ""){
         await submitTask({...task, deadline: `${task["deadline"]}T17:42:13.212Z`});
         fetchTasks();
         handleOptionSelect("today");
@@ -118,7 +117,7 @@ const AddTask = ({ projects, fetchTasks, handleOptionSelect }) => {
                     onClick={handleShowProjects}
                   />
                 </div>
-                {!showProjects && task.project !== null && (
+                {!showProjects && task.project !== "" && (
                   <div className="selected-add-option">
                     <img
                       src={Project}
@@ -136,6 +135,7 @@ const AddTask = ({ projects, fetchTasks, handleOptionSelect }) => {
                     return (
                       <div
                         className="add-option"
+                        key={project.id}
                         onClick={() =>
                           handleOptionSelection("project", project)
                         }
@@ -171,7 +171,7 @@ const AddTask = ({ projects, fetchTasks, handleOptionSelect }) => {
                   />
                   <img src={Dropdown} alt="dropdown" />
                 </div>
-                {task.deadline !== null && (
+                {task.deadline !== "" && (
                   <div className="selected-add-option">
                     <img
                       src={Calender}
@@ -205,7 +205,7 @@ const AddTask = ({ projects, fetchTasks, handleOptionSelect }) => {
                     onClick={handleShowPriority}
                   />
                 </div>
-                {!showPriority && task.priority !== null && (
+                {!showPriority && task.priority !== "" && (
                   <div className="selected-add-option">
                     <img
                       src={getFlag()}

@@ -23,6 +23,7 @@ const Today = ({ tasks, handleOptionSelect }) => {
             return (
               <div
                 className="today-task"
+                key={task.id}
                 onClick={() => handleOptionSelect("edit")}
               >
                 <label className="today-task-name">
@@ -31,6 +32,7 @@ const Today = ({ tasks, handleOptionSelect }) => {
                     type="checkbox"
                     value="Task one"
                     checked={false}
+                    readOnly={true}
                   />
                   <p>{task.title}</p>
                 </label>

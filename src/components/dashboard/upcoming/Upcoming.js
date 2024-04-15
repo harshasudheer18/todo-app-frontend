@@ -53,13 +53,14 @@ const Upcoming = ({ tasks, handleOptionSelect }) => {
               {tasks1 &&
                 tasks1.map((task) => {
                   return (
-                    <div className="upcoming-task">
+                    <div className="upcoming-task" key={task.id}>
                       <label className="upcoming-task-name">
                         <input
                           className="upcoming-task-checkbox"
                           type="checkbox"
                           value="Task one"
                           checked={false}
+                          readOnly={true}
                         />
                         <p>{task.title}</p>
                       </label>
@@ -90,13 +91,14 @@ const Upcoming = ({ tasks, handleOptionSelect }) => {
               {tasks2 &&
                 tasks2.map((task) => {
                   return (
-                    <div className="upcoming-task">
+                    <div className="upcoming-task" key={task.id}>
                       <label className="upcoming-task-name">
                         <input
                           className="upcoming-task-checkbox"
                           type="checkbox"
                           value="Task one"
                           checked={false}
+                          readOnly={true}
                         />
                         <p>{task.title}</p>
                       </label>
@@ -127,13 +129,14 @@ const Upcoming = ({ tasks, handleOptionSelect }) => {
               {tasks3 &&
                 tasks3.map((task) => {
                   return (
-                    <div className="upcoming-task">
+                    <div className="upcoming-task" key={task.id}>
                       <label className="upcoming-task-name">
                         <input
                           className="upcoming-task-checkbox"
                           type="checkbox"
                           value="Task one"
                           checked={false}
+                          readOnly={true}
                         />
                         <p>{task.title}</p>
                       </label>

@@ -15,13 +15,14 @@ const Project = ({ selectedProject, tasks }) => {
         {projectTasks &&
           projectTasks.map((task) => {
             return (
-              <div className="project-task">
+              <div className="project-task" key={task.id}>
                 <label className="project-task-name">
                   <input
                     className="project-task-checkbox"
                     type="checkbox"
                     value="Task one"
                     checked={false}
+                    readOnly={true}
                   />
                   <p>{task.title}</p>
                 </label>
