@@ -23,7 +23,6 @@ const Dashboard = () => {
     upcoming: false,
     project: false,
   });
-
   const [projects, setProjects] = useState();
   const [tasks, setTasks] = useState();
   const [selectedProject, setSelectedProject] = useState();
@@ -49,7 +48,6 @@ const Dashboard = () => {
   }, []);
 
   const handleOptionSelect = (option) => {
-    console.log(option);
     let currentOption = { ...seletedOption };
     for (const key in currentOption) {
       currentOption[key] = false;

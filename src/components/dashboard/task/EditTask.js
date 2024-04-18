@@ -50,7 +50,6 @@ const EditTask = ({ task, setShowEdit, fetchTasks }) => {
   const handleOptionSelection = (key, project) => {
     let currentTask = { ...editTask };
     currentTask[key] = project;
-    console.log(currentTask);
     setEditTask(currentTask);
     if (key === "project") {
       handleShowProjects();
@@ -74,7 +73,6 @@ const EditTask = ({ task, setShowEdit, fetchTasks }) => {
   };
 
   const handleSave = async () => {
-    console.log(editTask);
     try{
       if(editTask.title !== "" && editTask.description !== "" && editTask.project !== "" && editTask.deadline !== "" && editTask.priority !== ""){
         await submitEditTask({...editTask, deadline: `${editTask["deadline"]}T17:42:13.212Z`});

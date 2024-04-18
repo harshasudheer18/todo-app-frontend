@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { submitAddTask } from "./api/ApiCalls";
+import React, { useState, useEffect } from "react";
+import { getProjects, submitAddTask } from "./api/ApiCalls";
 import Dropdown from "../../../assets/images/icons/dropdown.svg";
 import Project from "../../../assets/images/icons/project.svg";
 import Calender from "../../../assets/images/icons/upcoming.svg";
@@ -8,7 +8,7 @@ import Flag2 from "../../../assets/images/icons/orange-flag.svg";
 import Flag3 from "../../../assets/images/icons/blue-flag.svg";
 import Flag4 from "../../../assets/images/icons/green-flag.svg";
 import "./AddTask.css";
-const AddTask = ({ projects, fetchTasks, handleOptionSelect }) => {
+const AddTask = ({ fetchTasks, handleOptionSelect }) => {
   const [task, setTask] = useState({
     title: "",
     description: "",
@@ -16,8 +16,19 @@ const AddTask = ({ projects, fetchTasks, handleOptionSelect }) => {
     deadline: "",
     priority: "",
   });
+  const [projects, setProjects] = useState();
   const [showProjects, setShowProjects] = useState(false);
   const [showPriority, setShowPriority] = useState(false);
+
+
+  const fetchProjects = async () => {
+    const response = await getProjects();
+    setProjects(response?.data);
+  };
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
 
   const handleTask = (event) => {
     setTask((prevFormData) => {
