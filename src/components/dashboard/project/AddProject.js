@@ -1,9 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { addProject } from "../api/ApiCalls";
+import { addProject } from "./api/ApiCalls";
 import "./AddProject.css";
 
-const AddProject = ({ handleProjectPopupClose, fetchProjects }) => {
+const AddProject = ({ setShowAdd, fetchProjects }) => {
   const {
     register,
     handleSubmit,
@@ -14,7 +14,7 @@ const AddProject = ({ handleProjectPopupClose, fetchProjects }) => {
     try{
         await addProject(data);
         await fetchProjects();
-        handleProjectPopupClose();
+        setShowAdd(false);
     }
     catch(err){
         console.log(err);
@@ -71,7 +71,7 @@ const AddProject = ({ handleProjectPopupClose, fetchProjects }) => {
             >
               <button
                 className="add-project-button add-project-button-cancel"
-                onClick={handleProjectPopupClose}
+                onClick={() => setShowAdd(false)}
               >
                 CANCEL
               </button>

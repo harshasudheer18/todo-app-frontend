@@ -1,17 +1,17 @@
 import React from "react";
-import { deleteProject } from "../api/ApiCalls";
+import { deleteProject } from "./api/ApiCalls";
 import "./DeleteProject.css";
 
 const DeleteProject = ({
-  selectedProject,
-  handleProjectPopupClose,
+  project,
+  setShowDelete,
   fetchProjects,
 }) => {
   const handleDeleteProject = async (id) => {
     try {
       await deleteProject(id);
       await fetchProjects();
-      handleProjectPopupClose();
+      setShowDelete(false);
     } catch (err) {
       console.log(err);
     }
@@ -22,7 +22,7 @@ const DeleteProject = ({
       <div className="delete-project-inner-container">
         <p className="delete-project-heading">Delete Project?</p>
         <p>
-          This will permanently delete "{selectedProject.title}" and all its
+          This will permanently delete "{project.title}" and all its
           tasks. Are you sure?
         </p>
         <div className="delete-project-button-container">
@@ -35,13 +35,13 @@ const DeleteProject = ({
           >
             <button
               className="delete-project-button delete-project-button-cancel"
-              onClick={handleProjectPopupClose}
+              onClick={() => setShowDelete(false)}
             >
               CANCEL
             </button>
             <button
               className="delete-project-button delete-project-button-save"
-              onClick={() => handleDeleteProject(selectedProject.id)}
+              onClick={() => handleDeleteProject(project.id)}
             >
               DELETE
             </button>

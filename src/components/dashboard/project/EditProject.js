@@ -1,11 +1,11 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { editProject } from "../api/ApiCalls";
+import { editProject } from "./api/ApiCalls";
 import "./EditProject.css";
 
 const EditProject = ({
-  selectedProject,
-  handleProjectPopupClose,
+  project,
+  setShowEdit,
   fetchProjects,
 }) => {
   const {
@@ -14,16 +14,16 @@ const EditProject = ({
     formState: { errors },
   } = useForm({
     defaultValues: {
-      name: selectedProject.title,
-      description: selectedProject.description,
+      name: project.title,
+      description: project.description,
     },
   });
 
   const onSubmit = async (data) => {
     try {
-      await editProject(selectedProject.id, data);
+      await editProject(project.id, data);
       fetchProjects();
-      handleProjectPopupClose();
+      setShowEdit(false);
     } catch (err) {
       console.log(err);
     }
@@ -79,7 +79,7 @@ const EditProject = ({
             >
               <button
                 className="edit-project-button edit-project-button-cancel"
-                onClick={handleProjectPopupClose}
+                onClick={() => setShowEdit(false)}
               >
                 CANCEL
               </button>
