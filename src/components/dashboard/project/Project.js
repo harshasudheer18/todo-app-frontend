@@ -3,7 +3,7 @@ import AddTaskButton from "../common/AddTaskButton";
 import Task from "../common/Task";
 import "./Project.css";
 
-const Project = ({ selectedProject, tasks, handleOptionSelect, handleTaskOptionSelect }) => {
+const Project = ({ selectedProject, tasks, fetchTasks, handleOptionSelect, handleTaskOptionSelect }) => {
   const projectTasks = tasks && tasks.filter((task) => task.project.id === selectedProject.id);
 
   return (
@@ -20,7 +20,7 @@ const Project = ({ selectedProject, tasks, handleOptionSelect, handleTaskOptionS
                 day: "numeric",
                 month: "long",
                 year: "numeric",
-              })} handleTaskOptionSelect={handleTaskOptionSelect}/>
+              })} fetchTasks={fetchTasks}/>
             );
           })}
         <AddTaskButton handleOptionSelect={handleOptionSelect}/>

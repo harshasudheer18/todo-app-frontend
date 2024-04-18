@@ -1,0 +1,53 @@
+.delete-task-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.delete-task-inner-container {
+    width: 30%;
+    background-color: white;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 4px;
+    padding: 20px 16px;
+}
+
+.delete-task-heading {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.delete-task-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 40px;
+}
+
+.delete-task-button {
+    width: 45%;
+    height: 32px;
+    border: 1px solid #875233;
+    background-color: #FCFAF8;
+    border-radius: 4px;
+}
+
+.delete-task-button-cancel:hover {
+    background-color: rgba(176, 147, 117, 0.4);
+}
+
+.delete-task-button-save {
+    background-color: #875233;
+    color: white
+}
+
+.delete-task-button-save:hover {
+    background-color: #A0613C;
+}

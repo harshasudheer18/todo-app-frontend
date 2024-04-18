@@ -1,0 +1,44 @@
+.upcoming-task {
+    border: 0.5px solid black;
+    border-radius: 4px;
+    padding: 8px;
+    margin-top: 12px;
+}
+
+.upcoming-task-content-container {
+    width: 80%;
+}
+
+.upcoming-task-content-container:hover {
+    cursor: pointer;
+}
+
+.upcoming-task-name {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+}
+
+.upcoming-task-checkbox{
+    margin-right: 12px;
+    width: 1.3em;
+    height: 1.3em;
+    border-radius: 50%;
+    border: 2px solid #875233;
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.upcoming-task-button-container {
+    display: none;
+}
+
+.upcoming-task:hover .upcoming-task-button-container {
+    display: inline;
+}
+
+.upcomg-project-name {
+    margin-left: 32px;
+    margin-top: 20px;
+}

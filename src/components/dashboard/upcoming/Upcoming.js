@@ -1,11 +1,10 @@
 import React, { useState } from "react";
+import UpcomingTask from "./UpcomingTask";
 import AddTaskButton from "../common/AddTaskButton";
 import Dropdown from "../../../assets/images/icons/dropdown-brown.svg";
-import Edit from "../../../assets/images/icons/edit.svg";
-import Delete from "../../../assets/images/icons/delete.svg";
 import "./Upcoming.css";
 
-const Upcoming = ({ tasks, handleOptionSelect, handleTaskOptionSelect }) => {
+const Upcoming = ({ tasks, fetchTasks, handleOptionSelect, handleTaskOptionSelect }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const dateCompare = (dateString, offset) => {
     const date = new Date(dateString);
@@ -63,48 +62,7 @@ const Upcoming = ({ tasks, handleOptionSelect, handleTaskOptionSelect }) => {
               {tasks1 &&
                 tasks1.map((task) => {
                   return (
-                    <div className="upcoming-task" key={task.id}>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <div className="upcoming-task-content-container" onClick={() => handleTaskOptionSelect("edit", task)}>
-                          <label className="upcoming-task-name">
-                            <input
-                              className="upcoming-task-checkbox"
-                              type="checkbox"
-                              value="Task one"
-                              checked={false}
-                              readOnly={true}
-                            />
-                            <p>{task.title}</p>
-                          </label>
-                          <p
-                            style={{
-                              color: "#5A5858",
-                              marginLeft: "30px",
-                              width: "60%",
-                            }}
-                          >
-                            {task.description}
-                          </p>
-                        </div>
-                        <div className="upcoming-task-button-container">
-                          <img
-                            style={{ marginRight: "12px" }}
-                            src={Edit}
-                            alt="edit"
-                            onClick={() => handleTaskOptionSelect("edit", task)}
-                          />
-                          <img src={Delete} alt="delete" onClick={() => handleTaskOptionSelect("delete", task)}/>
-                        </div>
-                      </div>
-                      <p className="upcomg-project-name">
-                        {task.project.title}
-                      </p>
-                    </div>
+                    <UpcomingTask task={task} fetchTasks={fetchTasks}/>
                   );
                 })}
             </div>
@@ -118,48 +76,7 @@ const Upcoming = ({ tasks, handleOptionSelect, handleTaskOptionSelect }) => {
               {tasks2 &&
                 tasks2.map((task) => {
                   return (
-                    <div className="upcoming-task" key={task.id}>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <div className="upcoming-task-content-container" onClick={() => handleTaskOptionSelect("edit", task)}>
-                          <label className="upcoming-task-name">
-                            <input
-                              className="upcoming-task-checkbox"
-                              type="checkbox"
-                              value="Task one"
-                              checked={false}
-                              readOnly={true}
-                            />
-                            <p>{task.title}</p>
-                          </label>
-                          <p
-                            style={{
-                              color: "#5A5858",
-                              marginLeft: "30px",
-                              width: "60%",
-                            }}
-                          >
-                            {task.description}
-                          </p>
-                        </div>
-                        <div className="upcoming-task-button-container">
-                          <img
-                            style={{ marginRight: "12px" }}
-                            src={Edit}
-                            alt="edit"
-                            onClick={() => handleTaskOptionSelect("edit", task)}
-                          />
-                          <img src={Delete} alt="delete" onClick={() => handleTaskOptionSelect("delete", task)}/>
-                        </div>
-                      </div>
-                      <p className="upcomg-project-name">
-                        {task.project.title}
-                      </p>
-                    </div>
+                    <UpcomingTask task={task} fetchTasks={fetchTasks}/>
                   );
                 })}
               <AddTaskButton handleOptionSelect={handleOptionSelect} />
@@ -173,48 +90,7 @@ const Upcoming = ({ tasks, handleOptionSelect, handleTaskOptionSelect }) => {
               {tasks3 &&
                 tasks3.map((task) => {
                   return (
-                    <div className="upcoming-task" key={task.id}>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <div className="upcoming-task-content-container" onClick={() => handleTaskOptionSelect("edit", task)}>
-                          <label className="upcoming-task-name">
-                            <input
-                              className="upcoming-task-checkbox"
-                              type="checkbox"
-                              value="Task one"
-                              checked={false}
-                              readOnly={true}
-                            />
-                            <p>{task.title}</p>
-                          </label>
-                          <p
-                            style={{
-                              color: "#5A5858",
-                              marginLeft: "30px",
-                              width: "60%",
-                            }}
-                          >
-                            {task.description}
-                          </p>
-                        </div>
-                        <div className="upcoming-task-button-container">
-                          <img
-                            style={{ marginRight: "12px" }}
-                            src={Edit}
-                            alt="edit"
-                            onClick={() => handleTaskOptionSelect("edit", task)}
-                          />
-                          <img src={Delete} alt="delete" onClick={() => handleTaskOptionSelect("delete", task)}/>
-                        </div>
-                      </div>
-                      <p className="upcomg-project-name">
-                        {task.project.title}
-                      </p>
-                    </div>
+                    <UpcomingTask task={task} fetchTasks={fetchTasks}/>
                   );
                 })}
               <AddTaskButton handleOptionSelect={handleOptionSelect} />

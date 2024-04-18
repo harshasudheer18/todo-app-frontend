@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import AddTask from "./addtask/AddTask";
-import EditTask from "./edittask/EditTask";
-import DeleteTask from "./deleteTask/DeleteTask";
+import AddTask from "./task/AddTask";
 import Search from "./search/Search";
 import Today from "./today/Today";
 import Upcoming from "./upcoming/Upcoming";
@@ -36,15 +34,10 @@ const Dashboard = () => {
     edit: false,
     delete: false,
   });
-  const [selectedTaskOption, setSelectedTaskOption] = useState({
-    edit: false,
-    delete: false
-  });
 
   const [projects, setProjects] = useState();
   const [tasks, setTasks] = useState();
   const [selectedProject, setSelectedProject] = useState();
-  const [selectedTask, setSelectedTask] = useState();
 
   const fetchProjects = async () => {
     const response = await getProjects();
@@ -103,24 +96,6 @@ const Dashboard = () => {
       currentProjectOption[key] = false;
     }
     setSeletedProjectOption(currentProjectOption);
-  };
-
-  const handleTaskOptionSelect = (taskOption, taskDetails) => {
-    let currentTaskOption = { ...selectedTaskOption };
-    for (const key in currentTaskOption) {
-      currentTaskOption[key] = false;
-    }
-    currentTaskOption[taskOption] = true;
-    setSelectedTask(taskDetails);
-    setSelectedTaskOption(currentTaskOption);
-  };
-
-  const handleTaskPopupClose = () => {
-    let currentTaskOption = { ...selectedTaskOption };
-    for (const key in currentTaskOption) {
-      currentTaskOption[key] = false;
-    }
-    setSelectedTaskOption(currentTaskOption);
   };
 
   return (
@@ -224,10 +199,10 @@ const Dashboard = () => {
         )}
         {seletedOption.search && <Search handleOptionSelect={handleOptionSelect}/>}
         {seletedOption.today && (
-          <Today tasks={tasks} handleOptionSelect={handleOptionSelect} handleTaskOptionSelect={handleTaskOptionSelect}/>
+          <Today tasks={tasks} fetchTasks={fetchTasks} handleOptionSelect={handleOptionSelect}/>
         )}
-        {seletedOption.upcoming && <Upcoming tasks={tasks} handleOptionSelect={handleOptionSelect} handleTaskOptionSelect={handleTaskOptionSelect}/>}
-        {seletedOption.project && <Project selectedProject={selectedProject} tasks={tasks} handleOptionSelect={handleOptionSelect} handleTaskOptionSelect={handleTaskOptionSelect}/>}
+        {seletedOption.upcoming && <Upcoming tasks={tasks} fetchTasks={fetchTasks} handleOptionSelect={handleOptionSelect}/>}
+        {seletedOption.project && <Project selectedProject={selectedProject} tasks={tasks} fetchTasks={fetchTasks} handleOptionSelect={handleOptionSelect}/>}
       </div>
       <div className="user-container">
         <img src={User} alt="user" />
@@ -255,8 +230,6 @@ const Dashboard = () => {
           fetchProjects={fetchProjects}
         />
       )}
-      {selectedTaskOption.edit && <EditTask projects={projects} selectedTask={selectedTask} fetchTasks={fetchTasks}  handleTaskPopupClose={handleTaskPopupClose}/>}
-      {selectedTaskOption.delete && <DeleteTask selectedTask={selectedTask} fetchTasks={fetchTasks} handleTaskPopupClose={handleTaskPopupClose}/>}
     </div>
   );
 };

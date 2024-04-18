@@ -3,7 +3,7 @@ import Task from "../common/Task";
 import AddTaskButton from "../common/AddTaskButton";
 import "./Today.css";
 
-const Today = ({ tasks, handleOptionSelect, handleTaskOptionSelect }) => {
+const Today = ({ tasks, fetchTasks, handleOptionSelect, handleTaskOptionSelect }) => {
   const isToday = (dateString) => {
     const date = new Date(dateString);
     const today = new Date();
@@ -22,7 +22,7 @@ const Today = ({ tasks, handleOptionSelect, handleTaskOptionSelect }) => {
         {tasks &&
           todayTasks.map((task) => {
             return (
-              <Task key={task.id} task={task} info={task.project.title} handleTaskOptionSelect={handleTaskOptionSelect}/>
+              <Task key={task.id} task={task} info={task.project.title} fetchTasks={fetchTasks}/>
             );
           })}
         <AddTaskButton handleOptionSelect={handleOptionSelect}/>

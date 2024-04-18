@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {submitTask} from "./api/ApiCalls";
+import { submitAddTask } from "./api/ApiCalls";
 import Dropdown from "../../../assets/images/icons/dropdown.svg";
 import Project from "../../../assets/images/icons/project.svg";
 import Calender from "../../../assets/images/icons/upcoming.svg";
@@ -64,7 +64,7 @@ const AddTask = ({ projects, fetchTasks, handleOptionSelect }) => {
   const handleSave = async () => {
     try{
       if(task.title !== "" && task.description !== "" && task.project !== "" && task.deadline !== "" && task.priority !== ""){
-        await submitTask({...task, deadline: `${task["deadline"]}T17:42:13.212Z`});
+        await submitAddTask({...task, deadline: `${task["deadline"]}T17:42:13.212Z`});
         fetchTasks();
         handleOptionSelect("today");
       }

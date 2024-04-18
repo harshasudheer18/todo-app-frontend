@@ -3,34 +3,45 @@ import EditTask from "../task/EditTask";
 import DeleteTask from "../task/DeleteTask";
 import Edit from "../../../assets/images/icons/edit.svg";
 import Delete from "../../../assets/images/icons/delete.svg";
-import "./Task.css";
+import "./UpcomingTask.css";
 
-const Task = ({ task, info, fetchTasks }) => {
+const UpcomingTask = ({ task, fetchTasks }) => {
   const [showEdit, setShowEdit] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
-
   return (
     <>
-      <div className="task" key={task.id}>
+    <div className="upcoming-task" key={task.id}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
         <div
-          className="task-content-container"
+          className="upcoming-task-content-container"
           onClick={() => setShowEdit(true)}
         >
-          <label className="task-name">
+          <label className="upcoming-task-name">
             <input
-              className="task-checkbox"
+              className="upcoming-task-checkbox"
               type="checkbox"
               value="Task one"
               checked={false}
               readOnly={true}
             />
-            <p className="task-title">{task.title}</p>
+            <p>{task.title}</p>
           </label>
-          <p style={{ color: "#5A5858", marginLeft: "30px" }}>
+          <p
+            style={{
+              color: "#5A5858",
+              marginLeft: "30px",
+              width: "60%",
+            }}
+          >
             {task.description}
           </p>
         </div>
-        <div className="task-button-container">
+        <div className="upcoming-task-button-container">
           <img
             style={{ marginRight: "12px" }}
             src={Edit}
@@ -43,12 +54,13 @@ const Task = ({ task, info, fetchTasks }) => {
             onClick={() => setShowDelete(true)}
           />
         </div>
-        <p className="info">{info}</p>
       </div>
-      {showEdit && <EditTask task={task} setShowEdit={setShowEdit} fetchTasks={fetchTasks} />}
-      {showDelete && <DeleteTask task={task} setShowDelete={setShowDelete} fetchTasks={fetchTasks}/>}
+      <p className="upcomg-project-name">{task.project.title}</p>
+    </div>
+    {showEdit && <EditTask task={task} setShowEdit={setShowEdit} fetchTasks={fetchTasks}/>}
+    {showDelete && <DeleteTask task={task} setShowDelete={setShowDelete} fetchTasks={fetchTasks}/>}
     </>
   );
 };
 
-export default Task;
+export default UpcomingTask;

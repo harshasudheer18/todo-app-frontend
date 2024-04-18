@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import {editTask} from "./api/ApiCalls";
+import React, { useState, useEffect } from "react";
+import {getProjects, submitEditTask} from "./api/ApiCalls";
 import Dropdown from "../../../assets/images/icons/dropdown.svg";
 import Project from "../../../assets/images/icons/project.svg";
 import Calender from "../../../assets/images/icons/upcoming.svg";
@@ -8,37 +8,35 @@ import Flag2 from "../../../assets/images/icons/orange-flag.svg";
 import Flag3 from "../../../assets/images/icons/blue-flag.svg";
 import Flag4 from "../../../assets/images/icons/green-flag.svg";
 import "./EditTask.css";
-const EditTask = ({ projects, selectedTask, fetchTasks, handleTaskPopupClose }) => {
-  const [task, setTask] = useState({
-    id: selectedTask.id,
-    title: selectedTask.title,
-    description: selectedTask.description,
-    project: selectedTask.project,
-    deadline: selectedTask.deadline.substring(0,10),
-    priority: selectedTask.priority,
+const EditTask = ({ task, setShowEdit, fetchTasks }) => {
+  const [editTask, setEditTask] = useState({
+    id: task.id,
+    title: task.title,
+    description: task.description,
+    project: task.project,
+    deadline: task.deadline.substring(0,10),
+    priority: task.priority
   });
+  const [projects, setProjects] = useState();
   const [showProjects, setShowProjects] = useState(false);
   const [showPriority, setShowPriority] = useState(false);
 
+  const fetchProjects = async () => {
+    const response = await getProjects();
+    setProjects(response?.data);
+  };
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
   const handleTask = (event) => {
-    setTask((prevFormData) => {
+    setEditTask((prevFormData) => {
       return {
         ...prevFormData,
         [event.target.name]: event.target.value,
       };
     });
-  };
-
-  const handleOptionSelection = (key, project) => {
-    let currentTask = { ...task };
-    currentTask[key] = project;
-    setTask(currentTask);
-    if (key === "project") {
-      handleShowProjects();
-    }
-    if (key === "priority") {
-      handleShowPriority();
-    }
   };
 
   const handleShowProjects = () => {
@@ -49,8 +47,21 @@ const EditTask = ({ projects, selectedTask, fetchTasks, handleTaskPopupClose }) 
     setShowPriority((prevState) => !prevState);
   };
 
+  const handleOptionSelection = (key, project) => {
+    let currentTask = { ...editTask };
+    currentTask[key] = project;
+    console.log(currentTask);
+    setEditTask(currentTask);
+    if (key === "project") {
+      handleShowProjects();
+    }
+    if (key === "priority") {
+      handleShowPriority();
+    }
+  };
+
   const getFlag = () => {
-    const priority = task.priority;
+    const priority = editTask.priority;
     if (priority === 1) {
       return Flag1;
     } else if (priority === 2) {
@@ -63,11 +74,12 @@ const EditTask = ({ projects, selectedTask, fetchTasks, handleTaskPopupClose }) 
   };
 
   const handleSave = async () => {
+    console.log(editTask);
     try{
-      if(task.title !== "" && task.description !== "" && task.project !== "" && task.deadline !== "" && task.priority !== ""){
-        await editTask({...task, deadline: `${task["deadline"]}T17:42:13.212Z`});
+      if(editTask.title !== "" && editTask.description !== "" && editTask.project !== "" && editTask.deadline !== "" && editTask.priority !== ""){
+        await submitEditTask({...editTask, deadline: `${editTask["deadline"]}T17:42:13.212Z`});
         fetchTasks();
-        handleTaskPopupClose();
+        setShowEdit(false);
       }
     }
     catch(err){
@@ -78,15 +90,13 @@ const EditTask = ({ projects, selectedTask, fetchTasks, handleTaskPopupClose }) 
   return (
     <div className="edit-container">
       <div className="edit-inner-container">
-        {/* <div className="edit-container"> */}
-          {/* <div className="edit-inner-container"> */}
             <form className="edit-content-container">
               <input
                 className="edit-name-input"
                 type="text"
                 name="title"
                 placeholder="Task name"
-                value={task.title}
+                value={editTask.title}
                 onChange={handleTask}
               />
               <br />
@@ -95,7 +105,7 @@ const EditTask = ({ projects, selectedTask, fetchTasks, handleTaskPopupClose }) 
                 type="text"
                 name="description"
                 placeholder="Description"
-                value={task.description}
+                value={editTask.description}
                 onChange={handleTask}
               ></textarea>
               <br />
@@ -119,7 +129,7 @@ const EditTask = ({ projects, selectedTask, fetchTasks, handleTaskPopupClose }) 
                         onClick={handleShowProjects}
                       />
                     </div>
-                    {!showProjects && task.project !== "" && (
+                    {!showProjects && editTask.project !== "" && (
                       <div className="selected-edit-option">
                         <img
                           src={Project}
@@ -127,7 +137,7 @@ const EditTask = ({ projects, selectedTask, fetchTasks, handleTaskPopupClose }) 
                           width="12px"
                           height="12px"
                         />
-                        <p>{task.project.title}</p>
+                        <p>{editTask.project.title}</p>
                       </div>
                     )}
                   </div>
@@ -168,12 +178,12 @@ const EditTask = ({ projects, selectedTask, fetchTasks, handleTaskPopupClose }) 
                         className="edit-date-picker"
                         type="date"
                         name="deadline"
-                        value={task.deadline}
+                        value={editTask.deadline}
                         onChange={handleTask}
                       />
                       <img src={Dropdown} alt="dropdown" />
                     </div>
-                    {task.deadline !== "" && (
+                    {editTask.deadline !== "" && (
                       <div className="selected-edit-option">
                         <img
                           src={Calender}
@@ -182,7 +192,7 @@ const EditTask = ({ projects, selectedTask, fetchTasks, handleTaskPopupClose }) 
                           height="16px"
                         />
                         <p>
-                          {new Date(task.deadline).toLocaleDateString("en-US", {
+                          {new Date(editTask.deadline).toLocaleDateString("en-US", {
                             day: "numeric",
                             month: "long",
                             year: "numeric",
@@ -207,7 +217,7 @@ const EditTask = ({ projects, selectedTask, fetchTasks, handleTaskPopupClose }) 
                         onClick={handleShowPriority}
                       />
                     </div>
-                    {!showPriority && task.priority !== "" && (
+                    {!showPriority && editTask.priority !== "" && (
                       <div className="selected-edit-option">
                         <img
                           src={getFlag()}
@@ -215,7 +225,7 @@ const EditTask = ({ projects, selectedTask, fetchTasks, handleTaskPopupClose }) 
                           width="12px"
                           height="12px"
                         />
-                        <p>Priority {task.priority}</p>
+                        <p>Priority {editTask.priority}</p>
                       </div>
                     )}
                   </div>
@@ -273,7 +283,7 @@ const EditTask = ({ projects, selectedTask, fetchTasks, handleTaskPopupClose }) 
                   )}
                 </div>
                 <div className="edit-button-container">
-                  <button className="edit-button edit-button-cancel" onClick={handleTaskPopupClose}>
+                  <button className="edit-button edit-button-cancel" onClick={() => setShowEdit(false)}>
                     CANCEL
                   </button>
                   <button
@@ -285,8 +295,6 @@ const EditTask = ({ projects, selectedTask, fetchTasks, handleTaskPopupClose }) 
                 </div>
               </div>
             </div>
-          {/* </div> */}
-        {/* </div> */}
       </div>
     </div>
   );
