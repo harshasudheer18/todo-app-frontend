@@ -42,7 +42,7 @@ const SidebarProjects = ({selected, handleOptionSelect, setSelectedProject}) => 
       {projects &&
         projects.map((project) => {
           return (
-            <SidebarProject project={project} selected={selected} handleOptionSelect={handleOptionSelect} setSelectedProject = {setSelectedProject} handleProjectSelect={handleProjectSelect} fetchProjects={fetchProjects}/>
+            <SidebarProject key={project.id} project={project} selected={selected} handleOptionSelect={handleOptionSelect} setSelectedProject = {setSelectedProject} handleProjectSelect={handleProjectSelect} fetchProjects={fetchProjects}/>
           );
         })}
         {showAdd && <AddProject setShowAdd={setShowAdd} fetchProjects={fetchProjects}/>}

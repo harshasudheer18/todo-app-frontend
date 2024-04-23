@@ -13,7 +13,7 @@ const EditTask = ({ task, setShowEdit, fetchTasks }) => {
     id: task.id,
     title: task.title,
     description: task.description,
-    project: task.project,
+    project: task.projectDTO,
     deadline: task.deadline.substring(0,10),
     priority: task.priority
   });

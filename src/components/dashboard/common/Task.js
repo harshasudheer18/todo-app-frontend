@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import EditTask from "../task/EditTask";
 import DeleteTask from "../task/DeleteTask";
+import { submitTaskDone } from "./api/ApiCalls";
 import Edit from "../../../assets/images/icons/edit.svg";
 import Delete from "../../../assets/images/icons/delete.svg";
 import "./Task.css";
@@ -8,24 +9,32 @@ import "./Task.css";
 const Task = ({ task, info, fetchTasks }) => {
   const [showEdit, setShowEdit] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
+  const markTaskAsDone = async () => {
+    try{
+      await submitTaskDone({...task, status: !task.status});
+      await fetchTasks();
+    }
+    catch(err){
+      console.log(err);
+    }
+  }
   return (
     <>
       <div className="task" key={task.id}>
         <div
           className="task-content-container"
-          onClick={() => setShowEdit(true)}
         >
           <label className="task-name">
             <input
               className="task-checkbox"
               type="checkbox"
               value="Task one"
-              checked={false}
-              readOnly={true}
+              checked={task.status}
+              onChange={markTaskAsDone}
             />
             <p className="task-title">{task.title}</p>
           </label>
-          <p style={{ color: "#5A5858", marginLeft: "30px" }}>
+          <p style={{ color: "#5A5858", marginLeft: "32px", fontSize: "18px"}}>
             {task.description}
           </p>
         </div>

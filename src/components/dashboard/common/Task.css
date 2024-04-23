@@ -12,38 +12,34 @@
     flex-grow: 1;
 }
 
-.task-content-container:hover {
-    cursor: pointer;
-}
-
 .task-name {
     display: flex;
     align-items: center;
-    font-size: 20px;
+    font-size: 22px;
 }
 
 .task-checkbox {
     margin-right: 12px;
-    width: 1.3em;
-    height: 1.3em;
+    width: 1.4em;
+    height: 1.4em;
     border-radius: 50%;
+    outline: none;
     border: 2px solid #875233;
     appearance: none;
-    outline: none;
     cursor: pointer;
 }
 
+.task-checkbox:checked {
+    appearance: auto;
+    clip-path: circle(45%);
+    accent-color: #875233;
+  }
+
 .task-button-container {
-    /* position: absolute;
-    right: 8px;
-    top: 8px;
-    color: #5A5858; */
     display: none;
 }
 
 .task:hover .task-button-container {
-    /* display: flex;
-    gap: 12px; */
     display: inline;
 }
 
