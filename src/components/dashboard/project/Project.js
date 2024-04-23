@@ -4,7 +4,7 @@ import Task from "../common/Task";
 import "./Project.css";
 
 const Project = ({ selectedProject, tasks, fetchTasks, handleOptionSelect, handleTaskOptionSelect }) => {
-  const projectTasks = tasks && tasks.filter((task) => task.project.id === selectedProject.id);
+  const projectTasks = tasks && tasks.filter((task) => task.projectDTO.id === selectedProject.id);
 
   return (
     <div className="project-container">

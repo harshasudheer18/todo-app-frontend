@@ -5,7 +5,7 @@ import Today from "./today/Today";
 import Upcoming from "./upcoming/Upcoming";
 import SidebarProjects from "./SidebarProjects";
 import Project from "./project/Project";
-import { getProjects, getTasks } from "./api/ApiCalls";
+import { getTasks } from "./api/ApiCalls";
 import User from "../../assets/images/icons/user.svg";
 import Logo from "../../assets/images/logo.svg";
 import Add from "../../assets/images/icons/add.svg";
@@ -23,17 +23,8 @@ const Dashboard = () => {
     upcoming: false,
     project: false,
   });
-  const [projects, setProjects] = useState();
   const [tasks, setTasks] = useState();
   const [selectedProject, setSelectedProject] = useState();
-
-  const fetchProjects = async () => {
-    const response = await getProjects();
-    const projects = response?.data.map((project) => {
-      return { ...project, display: false };
-    });
-    setProjects(projects);
-  };
 
   const fetchTasks = async () => {
     const response = await getTasks();
@@ -43,7 +34,6 @@ const Dashboard = () => {
   useEffect(() => {
     const user = localStorage.getItem("user");
     setUser(JSON.parse(user));
-    fetchProjects();
     fetchTasks();
   }, []);
 
@@ -115,7 +105,6 @@ const Dashboard = () => {
       <div className="main-container">
         {seletedOption.add && (
           <AddTask
-            projects={projects}
             fetchTasks={fetchTasks}
             handleOptionSelect={handleOptionSelect}
           />

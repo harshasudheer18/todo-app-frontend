@@ -55,7 +55,7 @@ const UpcomingTask = ({ task, fetchTasks }) => {
           />
         </div>
       </div>
-      <p className="upcomg-project-name">{task.project.title}</p>
+      <p className="upcomg-project-name">{task.projectDTO.title}</p>
     </div>
     {showEdit && <EditTask task={task} setShowEdit={setShowEdit} fetchTasks={fetchTasks}/>}
     {showDelete && <DeleteTask task={task} setShowDelete={setShowDelete} fetchTasks={fetchTasks}/>}

@@ -8,7 +8,6 @@ import "./Task.css";
 const Task = ({ task, info, fetchTasks }) => {
   const [showEdit, setShowEdit] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
-
   return (
     <>
       <div className="task" key={task.id}>
